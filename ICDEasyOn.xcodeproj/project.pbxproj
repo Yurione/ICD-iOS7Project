@@ -22,6 +22,10 @@
 		83E838C218A402440086F246 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E838A118A402430086F246 /* UIKit.framework */; };
 		83E838CA18A402440086F246 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 83E838C818A402440086F246 /* InfoPlist.strings */; };
 		83E838CC18A402440086F246 /* ICDEasyOnTests.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838CB18A402440086F246 /* ICDEasyOnTests.m */; };
+		83E838DC18A455620086F246 /* CodeICD.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838D718A455620086F246 /* CodeICD.m */; };
+		83E838DD18A455620086F246 /* iOSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838D918A455620086F246 /* iOSRequest.m */; };
+		83E838DE18A455620086F246 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838DB18A455620086F246 /* Parser.m */; };
+		83E838E118A456C40086F246 /* NSString+WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838E018A456C40086F246 /* NSString+WebService.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +60,14 @@
 		83E838C718A402440086F246 /* ICDEasyOnTests-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "ICDEasyOnTests-Info.plist"; sourceTree = "<group>"; };
 		83E838C918A402440086F246 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		83E838CB18A402440086F246 /* ICDEasyOnTests.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ICDEasyOnTests.m; sourceTree = "<group>"; };
+		83E838D618A455620086F246 /* CodeICD.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CodeICD.h; sourceTree = "<group>"; };
+		83E838D718A455620086F246 /* CodeICD.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CodeICD.m; sourceTree = "<group>"; };
+		83E838D818A455620086F246 /* iOSRequest.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iOSRequest.h; sourceTree = "<group>"; };
+		83E838D918A455620086F246 /* iOSRequest.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iOSRequest.m; sourceTree = "<group>"; };
+		83E838DA18A455620086F246 /* Parser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Parser.h; sourceTree = "<group>"; };
+		83E838DB18A455620086F246 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
+		83E838DF18A456C40086F246 /* NSString+WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WebService.h"; sourceTree = "<group>"; };
+		83E838E018A456C40086F246 /* NSString+WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WebService.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -115,6 +127,7 @@
 		83E838A318A402430086F246 /* ICDEasyOn */ = {
 			isa = PBXGroup;
 			children = (
+				83E838D518A4550D0086F246 /* Model */,
 				83E838AC18A402440086F246 /* AppDelegate.h */,
 				83E838AD18A402440086F246 /* AppDelegate.m */,
 				83E838AF18A402440086F246 /* Main.storyboard */,
@@ -155,6 +168,21 @@
 				83E838C818A402440086F246 /* InfoPlist.strings */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		83E838D518A4550D0086F246 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				83E838DF18A456C40086F246 /* NSString+WebService.h */,
+				83E838E018A456C40086F246 /* NSString+WebService.m */,
+				83E838D618A455620086F246 /* CodeICD.h */,
+				83E838D718A455620086F246 /* CodeICD.m */,
+				83E838D818A455620086F246 /* iOSRequest.h */,
+				83E838D918A455620086F246 /* iOSRequest.m */,
+				83E838DA18A455620086F246 /* Parser.h */,
+				83E838DB18A455620086F246 /* Parser.m */,
+			);
+			name = Model;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -255,8 +283,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E838AE18A402440086F246 /* AppDelegate.m in Sources */,
+				83E838DD18A455620086F246 /* iOSRequest.m in Sources */,
+				83E838E118A456C40086F246 /* NSString+WebService.m in Sources */,
+				83E838DC18A455620086F246 /* CodeICD.m in Sources */,
 				83E838B418A402440086F246 /* MasterViewController.m in Sources */,
 				83E838AA18A402440086F246 /* main.m in Sources */,
+				83E838DE18A455620086F246 /* Parser.m in Sources */,
 				83E838B718A402440086F246 /* DetailViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
