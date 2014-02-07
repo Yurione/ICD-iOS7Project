@@ -25,6 +25,8 @@
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
    
     
+    [defaults setObject:@"http://icdalmost.apphb.com/ServiceICDEasyOn.svc/Rest/getcodes" forKey:@"addressURL"];
+    [defaults synchronize];
     
     NSString *basePath = [defaults stringForKey:@"addressURL"];
     NSString *fullPath = [basePath stringByAppendingFormat:@"?search=%@&title=%@&definition=%@&inclusion=%@&exclusion=%@&note=%@&codingHint=%@",search,titleS,definitionS,inclusionS,exclusionS,noteS,codingS];

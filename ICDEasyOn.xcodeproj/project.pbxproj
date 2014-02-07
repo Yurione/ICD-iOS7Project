@@ -26,6 +26,7 @@
 		83E838DD18A455620086F246 /* iOSRequest.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838D918A455620086F246 /* iOSRequest.m */; };
 		83E838DE18A455620086F246 /* Parser.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838DB18A455620086F246 /* Parser.m */; };
 		83E838E118A456C40086F246 /* NSString+WebService.m in Sources */ = {isa = PBXBuildFile; fileRef = 83E838E018A456C40086F246 /* NSString+WebService.m */; };
+		83E838E618A4653A0086F246 /* menu-26.png in Resources */ = {isa = PBXBuildFile; fileRef = 83E838E518A4653A0086F246 /* menu-26.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -68,6 +69,7 @@
 		83E838DB18A455620086F246 /* Parser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Parser.m; sourceTree = "<group>"; };
 		83E838DF18A456C40086F246 /* NSString+WebService.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSString+WebService.h"; sourceTree = "<group>"; };
 		83E838E018A456C40086F246 /* NSString+WebService.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSString+WebService.m"; sourceTree = "<group>"; };
+		83E838E518A4653A0086F246 /* menu-26.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "menu-26.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -127,6 +129,7 @@
 		83E838A318A402430086F246 /* ICDEasyOn */ = {
 			isa = PBXGroup;
 			children = (
+				83E838E218A462670086F246 /* Images */,
 				83E838D518A4550D0086F246 /* Model */,
 				83E838AC18A402440086F246 /* AppDelegate.h */,
 				83E838AD18A402440086F246 /* AppDelegate.m */,
@@ -183,6 +186,14 @@
 				83E838DB18A455620086F246 /* Parser.m */,
 			);
 			name = Model;
+			sourceTree = "<group>";
+		};
+		83E838E218A462670086F246 /* Images */ = {
+			isa = PBXGroup;
+			children = (
+				83E838E518A4653A0086F246 /* menu-26.png */,
+			);
+			name = Images;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -261,6 +272,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83E838E618A4653A0086F246 /* menu-26.png in Resources */,
 				83E838B918A402440086F246 /* Images.xcassets in Resources */,
 				83E838A818A402440086F246 /* InfoPlist.strings in Resources */,
 				83E838B118A402440086F246 /* Main.storyboard in Resources */,

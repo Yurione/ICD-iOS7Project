@@ -7,16 +7,20 @@
 //
 
 #import "MasterViewController.h"
-
+#import "iOSRequest.h"
 #import "DetailViewController.h"
+#import "CodeICD.h"
+#import "AppDelegate.h"
 
 @interface MasterViewController () {
     NSMutableArray *_objects;
+    __weak IBOutlet UISearchBar *searchBar;
 }
 @end
 
 @implementation MasterViewController
 
+@synthesize table;
 - (void)awakeFromNib
 {
     [super awakeFromNib];
@@ -26,16 +30,110 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
+   // self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
+   /* UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+    self.navigationItem.rightBarButtonItem = addButton;*/
+    
+    
+    
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+-(void)fetchAddress:(NSString *)address
+{
+    NSLog(@"Loading Address: %@",address);
+    
+     [iOSRequest requestToPath:address titleC:true definitionC:false noteC:false
+                   inclusionC:false exclusionC:false codingC:false
+                 onCompletion:^(NSString *result, NSError *error) {
+                     dispatch_async(dispatch_get_main_queue(), ^{
+                         if(error){
+                             [self stopFetching:@"Failed to Fetch!"];
+                             NSLog(@"%@",error);
+                         }else{
+                             [self stopFetching:result];
+                             
+                         }
+                     });
+                     
+                 }];
+    
+    
+}
+
+
+- (IBAction)fetchKeyword:(id)sender
+{
+    
+    [self startFetching];
+    [self fetchAddress:searchBar.text];
+    [self.view endEditing:YES];
+}
+
+-(void)startFetching
+{
+    NSLog(@"Fetching...");
+    //[self hideAll];
+    //[self.addressField resignFirstResponder];
+    //[self.loading startAnimating];
+    //[self setStart:[NSDate date]];
+    //NSLog(@"%@",self.start);
+    self.fetchButton.enabled = NO;
+    
+}
+
+-(void)stopFetching:(NSString *)result
+{
+    
+   /* NSTimeInterval time = [self.start timeIntervalSinceNow];
+    float a = fabsf(time);
+    timeLabel.text = [NSString stringWithFormat:@"%@%.2f%@",@"Time elapsed: ",a , @" seconds"];
+    NSMutableArray *tData = [[NSMutableArray alloc] init];
+    
+    */
+    if (!_objects) {
+        _objects = [[NSMutableArray alloc] init];
+    }
+    
+   AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    NSString *inToast=@"";
+    
+    for (CodeICD *object in [app.listArray copy] ){
+        
+        if([object.Type isEqualToString:@"CH"]){
+            inToast=@"Chapter ";
+            [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+        }else if([object.Type isEqualToString:@"BL"]){
+            inToast=@"Block ";
+            [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+        }
+        else if([object.Type isEqualToString:@"CA"]){
+            inToast=@"Category ";
+            [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+        }
+        
+        
+    }
+    
+    
+    [table reloadData];
+    
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned codes" message:[NSString stringWithFormat:@"%i", _objects.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+    [alert show];
+    
+    
+    NSLog(@"Done Fetching!");
+    
+    //[self.view makeToast:[NSString stringWithFormat:@"%@%i",@"Returned CodesICD: ",[app.listArray count]]];
+    //[self.loading stopAnimating];
+    self.fetchButton.enabled = YES;
 }
 
 - (void)insertNewObject:(id)sender
@@ -85,28 +183,21 @@
     }
 }
 
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
 
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+      AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSDate *object = _objects[indexPath.row];
-        [[segue destinationViewController] setDetailItem:object];
+        CodeICD *code = app.listArray[indexPath.row];
+        DetailViewController *d = [segue destinationViewController];
+        d.loadHtml = code.HtmlResult;
+       
+        d.title = [[[self.table cellForRowAtIndexPath:indexPath] textLabel ]text];
+        
+
     }
 }
 

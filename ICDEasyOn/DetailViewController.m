@@ -9,43 +9,33 @@
 #import "DetailViewController.h"
 
 @interface DetailViewController ()
-- (void)configureView;
+
 @end
 
 @implementation DetailViewController
+@synthesize webview,loadHtml;
 
-#pragma mark - Managing the detail item
-
-- (void)setDetailItem:(id)newDetailItem
+- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
-    if (_detailItem != newDetailItem) {
-        _detailItem = newDetailItem;
+    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+    if (self) {
+        // Custom initialization
         
-        // Update the view.
-        [self configureView];
     }
-}
-
-- (void)configureView
-{
-    // Update the user interface for the detail item.
-
-    if (self.detailItem) {
-        self.detailDescriptionLabel.text = [self.detailItem description];
-    }
+    return self;
 }
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-    [self configureView];
+    [webview loadHTMLString:loadHtml baseURL:nil];
+	 
 }
 
 - (void)didReceiveMemoryWarning
 {
     [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
+   
 }
 
 @end
