@@ -7,6 +7,16 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		8383AEAC18A5D7CB000DAFC7 /* history-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEAB18A5D7CB000DAFC7 /* history-256.png */; };
+		8383AEB118A5D7D6000DAFC7 /* search-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEAD18A5D7D6000DAFC7 /* search-32.png */; };
+		8383AEB218A5D7D6000DAFC7 /* star-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEAE18A5D7D6000DAFC7 /* star-32.png */; };
+		8383AEB318A5D7D6000DAFC7 /* star-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEAF18A5D7D6000DAFC7 /* star-512.png */; };
+		8383AEB418A5D7D6000DAFC7 /* statistics-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEB018A5D7D6000DAFC7 /* statistics-256.png */; };
+		83DD968818A4F63700C0C1E9 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968318A4F63700C0C1E9 /* RECommonFunctions.m */; };
+		83DD968918A4F63700C0C1E9 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968518A4F63700C0C1E9 /* RESideMenu.m */; };
+		83DD968A18A4F63700C0C1E9 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968718A4F63700C0C1E9 /* UIViewController+RESideMenu.m */; };
+		83DD968E18A4F6A700C0C1E9 /* MenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968D18A4F6A700C0C1E9 /* MenuViewController.m */; };
+		83DD969D18A4FA5D00C0C1E9 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD969C18A4FA5D00C0C1E9 /* RootViewController.m */; };
 		83E8389E18A402430086F246 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E8389D18A402430086F246 /* Foundation.framework */; };
 		83E838A018A402430086F246 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E8389F18A402430086F246 /* CoreGraphics.framework */; };
 		83E838A218A402430086F246 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83E838A118A402430086F246 /* UIKit.framework */; };
@@ -40,6 +50,21 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		8383AEAB18A5D7CB000DAFC7 /* history-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history-256.png"; sourceTree = "<group>"; };
+		8383AEAD18A5D7D6000DAFC7 /* search-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "search-32.png"; sourceTree = "<group>"; };
+		8383AEAE18A5D7D6000DAFC7 /* star-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-32.png"; sourceTree = "<group>"; };
+		8383AEAF18A5D7D6000DAFC7 /* star-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-512.png"; sourceTree = "<group>"; };
+		8383AEB018A5D7D6000DAFC7 /* statistics-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statistics-256.png"; sourceTree = "<group>"; };
+		83DD968218A4F63700C0C1E9 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
+		83DD968318A4F63700C0C1E9 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
+		83DD968418A4F63700C0C1E9 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
+		83DD968518A4F63700C0C1E9 /* RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RESideMenu.m; sourceTree = "<group>"; };
+		83DD968618A4F63700C0C1E9 /* UIViewController+RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+RESideMenu.h"; sourceTree = "<group>"; };
+		83DD968718A4F63700C0C1E9 /* UIViewController+RESideMenu.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+RESideMenu.m"; sourceTree = "<group>"; };
+		83DD968C18A4F6A700C0C1E9 /* MenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MenuViewController.h; sourceTree = "<group>"; };
+		83DD968D18A4F6A700C0C1E9 /* MenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MenuViewController.m; sourceTree = "<group>"; };
+		83DD969B18A4FA5D00C0C1E9 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		83DD969C18A4FA5D00C0C1E9 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		83E8389A18A402430086F246 /* ICDEasyOn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ICDEasyOn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		83E8389D18A402430086F246 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		83E8389F18A402430086F246 /* CoreGraphics.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreGraphics.framework; path = System/Library/Frameworks/CoreGraphics.framework; sourceTree = SDKROOT; };
@@ -96,6 +121,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		83DD968B18A4F65B00C0C1E9 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				83E838B218A402440086F246 /* MasterViewController.h */,
+				83E838B318A402440086F246 /* MasterViewController.m */,
+				83E838B518A402440086F246 /* DetailViewController.h */,
+				83E838B618A402440086F246 /* DetailViewController.m */,
+				83DD968C18A4F6A700C0C1E9 /* MenuViewController.h */,
+				83DD968D18A4F6A700C0C1E9 /* MenuViewController.m */,
+				83DD969B18A4FA5D00C0C1E9 /* RootViewController.h */,
+				83DD969C18A4FA5D00C0C1E9 /* RootViewController.m */,
+			);
+			name = Controllers;
+			sourceTree = "<group>";
+		};
 		83E8389118A402430086F246 = {
 			isa = PBXGroup;
 			children = (
@@ -129,15 +169,13 @@
 		83E838A318A402430086F246 /* ICDEasyOn */ = {
 			isa = PBXGroup;
 			children = (
+				83DD968B18A4F65B00C0C1E9 /* Controllers */,
+				83E838E718A482080086F246 /* SideMenu */,
 				83E838E218A462670086F246 /* Images */,
 				83E838D518A4550D0086F246 /* Model */,
 				83E838AC18A402440086F246 /* AppDelegate.h */,
 				83E838AD18A402440086F246 /* AppDelegate.m */,
 				83E838AF18A402440086F246 /* Main.storyboard */,
-				83E838B218A402440086F246 /* MasterViewController.h */,
-				83E838B318A402440086F246 /* MasterViewController.m */,
-				83E838B518A402440086F246 /* DetailViewController.h */,
-				83E838B618A402440086F246 /* DetailViewController.m */,
 				83E838B818A402440086F246 /* Images.xcassets */,
 				83E838A418A402440086F246 /* Supporting Files */,
 			);
@@ -191,9 +229,27 @@
 		83E838E218A462670086F246 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				8383AEAD18A5D7D6000DAFC7 /* search-32.png */,
+				8383AEAE18A5D7D6000DAFC7 /* star-32.png */,
+				8383AEAF18A5D7D6000DAFC7 /* star-512.png */,
+				8383AEB018A5D7D6000DAFC7 /* statistics-256.png */,
+				8383AEAB18A5D7CB000DAFC7 /* history-256.png */,
 				83E838E518A4653A0086F246 /* menu-26.png */,
 			);
 			name = Images;
+			sourceTree = "<group>";
+		};
+		83E838E718A482080086F246 /* SideMenu */ = {
+			isa = PBXGroup;
+			children = (
+				83DD968218A4F63700C0C1E9 /* RECommonFunctions.h */,
+				83DD968318A4F63700C0C1E9 /* RECommonFunctions.m */,
+				83DD968418A4F63700C0C1E9 /* RESideMenu.h */,
+				83DD968518A4F63700C0C1E9 /* RESideMenu.m */,
+				83DD968618A4F63700C0C1E9 /* UIViewController+RESideMenu.h */,
+				83DD968718A4F63700C0C1E9 /* UIViewController+RESideMenu.m */,
+			);
+			name = SideMenu;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -272,9 +328,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8383AEB118A5D7D6000DAFC7 /* search-32.png in Resources */,
+				8383AEB218A5D7D6000DAFC7 /* star-32.png in Resources */,
+				8383AEAC18A5D7CB000DAFC7 /* history-256.png in Resources */,
 				83E838E618A4653A0086F246 /* menu-26.png in Resources */,
 				83E838B918A402440086F246 /* Images.xcassets in Resources */,
 				83E838A818A402440086F246 /* InfoPlist.strings in Resources */,
+				8383AEB318A5D7D6000DAFC7 /* star-512.png in Resources */,
+				8383AEB418A5D7D6000DAFC7 /* statistics-256.png in Resources */,
 				83E838B118A402440086F246 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -295,13 +356,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				83E838AE18A402440086F246 /* AppDelegate.m in Sources */,
+				83DD968818A4F63700C0C1E9 /* RECommonFunctions.m in Sources */,
 				83E838DD18A455620086F246 /* iOSRequest.m in Sources */,
 				83E838E118A456C40086F246 /* NSString+WebService.m in Sources */,
 				83E838DC18A455620086F246 /* CodeICD.m in Sources */,
 				83E838B418A402440086F246 /* MasterViewController.m in Sources */,
 				83E838AA18A402440086F246 /* main.m in Sources */,
+				83DD968E18A4F6A700C0C1E9 /* MenuViewController.m in Sources */,
 				83E838DE18A455620086F246 /* Parser.m in Sources */,
+				83DD968918A4F63700C0C1E9 /* RESideMenu.m in Sources */,
+				83DD969D18A4FA5D00C0C1E9 /* RootViewController.m in Sources */,
 				83E838B718A402440086F246 /* DetailViewController.m in Sources */,
+				83DD968A18A4F63700C0C1E9 /* UIViewController+RESideMenu.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -510,6 +576,7 @@
 				83E838D118A402440086F246 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		83E838D218A402440086F246 /* Build configuration list for PBXNativeTarget "ICDEasyOnTests" */ = {
 			isa = XCConfigurationList;
@@ -518,6 +585,7 @@
 				83E838D418A402440086F246 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
 	};

@@ -21,29 +21,14 @@
 @implementation MasterViewController
 
 @synthesize table;
-- (void)awakeFromNib
-{
-    [super awakeFromNib];
+
+
+- (IBAction)showMenu{
+    [self.sideMenuViewController presentMenuViewController];
 }
 
-- (void)viewDidLoad
-{
-    [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-   // self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-   /* UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;*/
-    
-    
-    
-}
 
-- (void)didReceiveMemoryWarning
-{
-    [super didReceiveMemoryWarning];
-    // Dispose of any resources that can be recreated.
-}
 
 -(void)fetchAddress:(NSString *)address
 {
@@ -97,9 +82,9 @@
     NSMutableArray *tData = [[NSMutableArray alloc] init];
     
     */
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
+   
+    _objects = [[NSMutableArray alloc] init];
+    
     
    AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
@@ -200,5 +185,6 @@
 
     }
 }
+
 
 @end
