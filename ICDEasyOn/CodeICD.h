@@ -14,4 +14,5 @@
 @property (nonatomic, retain) NSString *Preferred;
 @property (nonatomic, retain) NSString *Type;
 @property (nonatomic, retain) NSString *HtmlResult;
+@property (nonatomic, retain) NSString *Superclass;
 @end

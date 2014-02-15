@@ -55,7 +55,6 @@
 
 - (IBAction)fetchKeyword:(id)sender
 {
-    
     [self startFetching];
     [self fetchAddress:searchBar.text];
     [self.view endEditing:YES];
@@ -116,7 +115,7 @@
     
     NSLog(@"Done Fetching!");
     
-    //[self.view makeToast:[NSString stringWithFormat:@"%@%i",@"Returned CodesICD: ",[app.listArray count]]];
+   
     //[self.loading stopAnimating];
     self.fetchButton.enabled = YES;
 }

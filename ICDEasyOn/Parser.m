@@ -62,9 +62,23 @@
     
 
     else
-        [codeICD setValue:currentElementValue forKey:elementName];
+        @try
+        {
+            [codeICD setValue:currentElementValue forKey:elementName];
+            currentElementValue = nil;
+        }
     
-    currentElementValue = nil;
+        @catch (NSException *exception)
+        {
+            NSLog(@"Exception: %@", exception);
+        }
+   
+    
+            
+    
+    
+    
+  
     
 }
 

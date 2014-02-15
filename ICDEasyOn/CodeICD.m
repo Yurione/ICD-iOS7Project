@@ -9,6 +9,6 @@
 #import "CodeICD.h"
 
 @implementation CodeICD
-@synthesize Id, Code,Preferred,Type,HtmlResult;
+@synthesize Id, Code,Preferred,Type,HtmlResult,Superclass;
 
 @end
