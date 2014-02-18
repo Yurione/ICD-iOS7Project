@@ -9,11 +9,14 @@
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
 @interface MasterViewController : UITableViewController
-- (IBAction)fetchKeyword:(id)sender;
-@property (weak, nonatomic) IBOutlet UIBarButtonItem *fetchButton;
+
+
 - (IBAction)showMenu;
+@property (weak, nonatomic) IBOutlet UIBarButtonItem *fetchButton;
+- (IBAction)fetchKeyword:(id)sender;
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
+
 
 
 

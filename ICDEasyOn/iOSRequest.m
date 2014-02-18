@@ -11,18 +11,20 @@
 #import "NSString+WebService.h"
 
 @implementation iOSRequest
-+(void)requestToPath:(NSString *)search titleC:(BOOL )title definitionC:(BOOL )definition noteC:(BOOL)note inclusionC:(BOOL )inclusion exclusionC:(BOOL)exclusion codingC:(BOOL)codingHint onCompletion:(RequestCompletionHandler)complete
++(void)requestToPath:(NSString *)search onCompletion:(RequestCompletionHandler)complete
 {
-    
-    search = [search URLEncode];
-    NSString *titleS = (title) ? @"True" : @"False";
-    NSString *definitionS = (definition) ? @"True" : @"False";
-    NSString *noteS = (note) ? @"True" : @"False";
-    NSString *inclusionS = (inclusion) ? @"True" : @"False";
-    NSString *exclusionS = (exclusion) ? @"True" : @"False";
-    NSString *codingS = (codingHint) ? @"True" : @"False";
-    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+
+    search = [search URLEncode];
+    NSString *titleS = ([defaults boolForKey:@"titleChecked"]) ? @"True" : @"False";
+    NSString *definitionS = ([defaults boolForKey:@"definitionChecked"]) ? @"True" : @"False";
+    NSString *noteS = ([defaults boolForKey:@"noteCkecked"]) ? @"True" : @"False";
+    NSString *inclusionS = ([defaults boolForKey:@"inclusionChecked"]) ? @"True" : @"False";
+    NSString *exclusionS = ([defaults boolForKey:@"exclusionChecked"]) ? @"True" : @"False";
+    NSString *codingS = ([defaults boolForKey:@"codingChecked"]) ? @"True" : @"False";
+    
+
    
     
     [defaults setObject:@"http://icdalmost.apphb.com/ServiceICDEasyOn.svc/Rest/getcodes" forKey:@"addressURL"];
@@ -30,7 +32,8 @@
     
     NSString *basePath = [defaults stringForKey:@"addressURL"];
     NSString *fullPath = [basePath stringByAppendingFormat:@"?search=%@&title=%@&definition=%@&inclusion=%@&exclusion=%@&note=%@&codingHint=%@",search,titleS,definitionS,inclusionS,exclusionS,noteS,codingS];
-
+    
+    NSLog(@"%@",fullPath);
     
     NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
 

@@ -12,7 +12,7 @@ typedef void(^RequestCompletionHandler) (NSString*, NSError*);
 
 @interface iOSRequest : NSObject
    
-+(void)requestToPath:(NSString*)search titleC:(BOOL)title definitionC:(BOOL)definition noteC:(BOOL)note inclusionC:(BOOL)inclusion exclusionC:(BOOL)exclusion codingC:(BOOL)codingHint onCompletion:(RequestCompletionHandler)complete;
++(void)requestToPath:(NSString*)search onCompletion:(RequestCompletionHandler)complete;
 
 
 @end

@@ -9,10 +9,11 @@
 #import "MasterViewController.h"
 #import "iOSRequest.h"
 #import "DetailViewController.h"
+#import "SettingsController.h"
 #import "CodeICD.h"
 #import "AppDelegate.h"
 
-@interface MasterViewController () {
+@interface MasterViewController () <UIActionSheetDelegate>{
     NSMutableArray *_objects;
     __weak IBOutlet UISearchBar *searchBar;
 }
@@ -25,17 +26,23 @@
 
 - (IBAction)showMenu{
     [self.sideMenuViewController presentMenuViewController];
+
 }
 
-
+- (void)viewDidLoad
+{
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    [defaults setBool:YES forKey:@"titleChecked"];
+    [defaults synchronize];
+}
 
 
 -(void)fetchAddress:(NSString *)address
 {
     NSLog(@"Loading Address: %@",address);
     
-     [iOSRequest requestToPath:address titleC:true definitionC:false noteC:false
-                   inclusionC:false exclusionC:false codingC:false
+     [iOSRequest requestToPath:address 
                  onCompletion:^(NSString *result, NSError *error) {
                      dispatch_async(dispatch_get_main_queue(), ^{
                          if(error){
@@ -58,6 +65,7 @@
     [self startFetching];
     [self fetchAddress:searchBar.text];
     [self.view endEditing:YES];
+    [self.navigationController setToolbarHidden:YES animated:YES];
 }
 
 -(void)startFetching
@@ -74,7 +82,8 @@
 
 -(void)stopFetching:(NSString *)result
 {
-    
+    [self.navigationController setToolbarHidden:NO];
+     
    /* NSTimeInterval time = [self.start timeIntervalSinceNow];
     float a = fabsf(time);
     timeLabel.text = [NSString stringWithFormat:@"%@%.2f%@",@"Time elapsed: ",a , @" seconds"];
@@ -110,6 +119,7 @@
     [table reloadData];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned codes" message:[NSString stringWithFormat:@"%i", _objects.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+    
     [alert show];
     
     
@@ -183,7 +193,12 @@
         
 
     }
-}
+    if ([[segue identifier] isEqualToString:@"settings"]) {
+        
 
+        
+        
+    }
+}
 
 @end
