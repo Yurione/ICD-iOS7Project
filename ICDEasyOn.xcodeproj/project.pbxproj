@@ -14,6 +14,7 @@
 		8383AEB318A5D7D6000DAFC7 /* star-512.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEAF18A5D7D6000DAFC7 /* star-512.png */; };
 		8383AEB418A5D7D6000DAFC7 /* statistics-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEB018A5D7D6000DAFC7 /* statistics-256.png */; };
 		83DC3DF318B2794E0059F2C1 /* info-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 83DC3DF218B2794E0059F2C1 /* info-32.png */; };
+		83DC3DF618B2FCC90059F2C1 /* BookmarksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DC3DF518B2FCC90059F2C1 /* BookmarksController.m */; };
 		83DD968818A4F63700C0C1E9 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968318A4F63700C0C1E9 /* RECommonFunctions.m */; };
 		83DD968918A4F63700C0C1E9 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968518A4F63700C0C1E9 /* RESideMenu.m */; };
 		83DD968A18A4F63700C0C1E9 /* UIViewController+RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968718A4F63700C0C1E9 /* UIViewController+RESideMenu.m */; };
@@ -60,6 +61,8 @@
 		8383AEAF18A5D7D6000DAFC7 /* star-512.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-512.png"; sourceTree = "<group>"; };
 		8383AEB018A5D7D6000DAFC7 /* statistics-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statistics-256.png"; sourceTree = "<group>"; };
 		83DC3DF218B2794E0059F2C1 /* info-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "info-32.png"; sourceTree = "<group>"; };
+		83DC3DF418B2FCC90059F2C1 /* BookmarksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksController.h; sourceTree = "<group>"; };
+		83DC3DF518B2FCC90059F2C1 /* BookmarksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksController.m; sourceTree = "<group>"; };
 		83DD968218A4F63700C0C1E9 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
 		83DD968318A4F63700C0C1E9 /* RECommonFunctions.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RECommonFunctions.m; sourceTree = "<group>"; };
 		83DD968418A4F63700C0C1E9 /* RESideMenu.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RESideMenu.h; sourceTree = "<group>"; };
@@ -141,6 +144,8 @@
 				83DD969C18A4FA5D00C0C1E9 /* RootViewController.m */,
 				83F844EE18B044F6000BAB03 /* SettingsController.h */,
 				83F844EF18B044F6000BAB03 /* SettingsController.m */,
+				83DC3DF418B2FCC90059F2C1 /* BookmarksController.h */,
+				83DC3DF518B2FCC90059F2C1 /* BookmarksController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -371,6 +376,7 @@
 				83E838AE18A402440086F246 /* AppDelegate.m in Sources */,
 				83DD968818A4F63700C0C1E9 /* RECommonFunctions.m in Sources */,
 				83F844F018B044F6000BAB03 /* SettingsController.m in Sources */,
+				83DC3DF618B2FCC90059F2C1 /* BookmarksController.m in Sources */,
 				83E838DD18A455620086F246 /* iOSRequest.m in Sources */,
 				83E838E118A456C40086F246 /* NSString+WebService.m in Sources */,
 				83E838DC18A455620086F246 /* CodeICD.m in Sources */,

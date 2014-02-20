@@ -12,12 +12,13 @@
 
 
 -(id) initParser {
-    
-    if (self == [super init]) {
-        
+    self = [super init];
+   // if (self == [super init]) {
+    if(self){
         app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
-        
     }
+  //  }
+    
     return self;
 }
 
@@ -64,13 +65,16 @@
     else
         @try
         {
-            [codeICD setValue:currentElementValue forKey:elementName];
-            currentElementValue = nil;
+            [codeICD setValue:currentElementValue forKey:elementName];            
         }
     
         @catch (NSException *exception)
         {
-            NSLog(@"Exception: %@", exception);
+            NSLog(@"Exception: %@%@", [exception name], [exception reason]);
+        }
+        @finally
+        {
+            currentElementValue = nil;
         }
    
     

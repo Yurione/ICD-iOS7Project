@@ -13,28 +13,31 @@
 #import "CodeICD.h"
 #import "AppDelegate.h"
 
-@interface MasterViewController () <UIActionSheetDelegate>{
-    NSMutableArray *_objects;
-    __weak IBOutlet UISearchBar *searchBar;
+@interface MasterViewController () {
+  
+
 }
 @end
 
 @implementation MasterViewController
 
-@synthesize table;
+@synthesize table,_searchBar,_objects;
 
 
-- (IBAction)showMenu{
-    [self.sideMenuViewController presentMenuViewController];
 
-}
 
 - (void)viewDidLoad
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
     [defaults setBool:YES forKey:@"titleChecked"];
+    [defaults setBool:NO forKey:@"definitionChecked"];
+    [defaults setBool:NO forKey:@"inclusionChecked"];
+    [defaults setBool:NO forKey:@"exclusionChecked"];
+    [defaults setBool:NO forKey:@"noteChecked"];
+    [defaults setBool:NO forKey:@"codingChecked"];
     [defaults synchronize];
+    
 }
 
 
@@ -63,7 +66,7 @@
 - (IBAction)fetchKeyword:(id)sender
 {
     [self startFetching];
-    [self fetchAddress:searchBar.text];
+    [self fetchAddress:_searchBar.text];
     [self.view endEditing:YES];
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
@@ -71,25 +74,25 @@
 -(void)startFetching
 {
     NSLog(@"Fetching...");
-    //[self hideAll];
-    //[self.addressField resignFirstResponder];
+   
+   
     //[self.loading startAnimating];
-    //[self setStart:[NSDate date]];
+    [self setStart:[NSDate date]];
     //NSLog(@"%@",self.start);
-    self.fetchButton.enabled = NO;
+ 
     
 }
 
 -(void)stopFetching:(NSString *)result
 {
-    [self.navigationController setToolbarHidden:NO];
+  
      
-   /* NSTimeInterval time = [self.start timeIntervalSinceNow];
+    NSTimeInterval time = [self.start timeIntervalSinceNow];
     float a = fabsf(time);
-    timeLabel.text = [NSString stringWithFormat:@"%@%.2f%@",@"Time elapsed: ",a , @" seconds"];
-    NSMutableArray *tData = [[NSMutableArray alloc] init];
+    NSString *timeLabel = [NSString stringWithFormat:@"%@%.2f%@",@" codes in ",a , @" seconds"];
+   
     
-    */
+  
    
     _objects = [[NSMutableArray alloc] init];
     
@@ -102,32 +105,33 @@
         
         if([object.Type isEqualToString:@"CH"]){
             inToast=@"Chapter ";
-            [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
-        }else if([object.Type isEqualToString:@"BL"]){
+        }
+        else if([object.Type isEqualToString:@"BL"]){
             inToast=@"Block ";
-            [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+         
         }
         else if([object.Type isEqualToString:@"CA"]){
             inToast=@"Category ";
-            [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+           
         }
-        
+        [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+   
         
     }
     
     
     [table reloadData];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned codes" message:[NSString stringWithFormat:@"%i", _objects.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned Information" message:[NSString stringWithFormat:@"%i%@", _objects.count,timeLabel] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
     
     [alert show];
-    
+ 
     
     NSLog(@"Done Fetching!");
     
    
     //[self.loading stopAnimating];
-    self.fetchButton.enabled = YES;
+  
 }
 
 - (void)insertNewObject:(id)sender
@@ -193,12 +197,23 @@
         
 
     }
-    if ([[segue identifier] isEqualToString:@"settings"]) {
-        
-
-        
-        
-    }
+    
 }
 
+- (IBAction)showMenu:(id)sender {
+    [self.sideMenuViewController presentMenuViewController];
+    
+}
+
+
+- (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
+{
+    if (searchBar == _searchBar) {
+        [self startFetching];
+        [self fetchAddress:_searchBar.text];
+        [self.view endEditing:YES];
+        
+    }
+
+}
 @end

@@ -32,7 +32,7 @@
     
     NSString *basePath = [defaults stringForKey:@"addressURL"];
     NSString *fullPath = [basePath stringByAppendingFormat:@"?search=%@&title=%@&definition=%@&inclusion=%@&exclusion=%@&note=%@&codingHint=%@",search,titleS,definitionS,inclusionS,exclusionS,noteS,codingS];
-    
+
     NSLog(@"%@",fullPath);
     
     NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
@@ -45,7 +45,8 @@
                                        queue:backgroundQueue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                                
-                               NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
+                               NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];                             
+        
                                
                                Parser *theParser = [[Parser alloc] initParser];
                                

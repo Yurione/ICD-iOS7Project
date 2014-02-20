@@ -30,13 +30,13 @@
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     
-     [defaults setBool:YES forKey:@"titleChecked"];
-     [defaults setBool:NO forKey:@"definitionChecked"];
-     [defaults setBool:NO forKey:@"inclusionChecked"];
-     [defaults setBool:NO forKey:@"exclusionChecked"];
-     [defaults setBool:NO forKey:@"noteChecked"];
-     [defaults setBool:NO forKey:@"definitionChecked"];
-     [defaults synchronize];
+    [defaults setBool:YES forKey:@"titleChecked"];
+    [defaults setBool:NO forKey:@"definitionChecked"];
+    [defaults setBool:NO forKey:@"inclusionChecked"];
+    [defaults setBool:NO forKey:@"exclusionChecked"];
+    [defaults setBool:NO forKey:@"noteChecked"];
+    [defaults setBool:NO forKey:@"codingChecked"];
+    [defaults synchronize];
 }
 
 - (void)didReceiveMemoryWarning
