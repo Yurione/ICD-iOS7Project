@@ -15,7 +15,7 @@
 @property (strong, nonatomic) NSDate *start;
 @property (strong, nonatomic) NSMutableArray *_objects;
 
-- (IBAction)fetchKeyword:(id)sender;
+
 - (IBAction)showMenu:(id)sender;
 
 @end

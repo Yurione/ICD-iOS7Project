@@ -63,14 +63,6 @@
 }
 
 
-- (IBAction)fetchKeyword:(id)sender
-{
-    [self startFetching];
-    [self fetchAddress:_searchBar.text];
-    [self.view endEditing:YES];
-    [self.navigationController setToolbarHidden:YES animated:YES];
-}
-
 -(void)startFetching
 {
     NSLog(@"Fetching...");
