@@ -12,6 +12,7 @@
 #import "SettingsController.h"
 #import "CodeICD.h"
 #import "AppDelegate.h"
+#import "SVProgressHUD.h"
 
 @interface MasterViewController () {
   
@@ -44,6 +45,11 @@
 -(void)fetchAddress:(NSString *)address
 {
     NSLog(@"Loading Address: %@",address);
+    NSLog(@"Fetching...");
+    
+    [self setStart:[NSDate date]];
+    
+    [SVProgressHUD showWithStatus:@"Searching for keyword..."];
     
      [iOSRequest requestToPath:address 
                  onCompletion:^(NSString *result, NSError *error) {
@@ -63,17 +69,6 @@
 }
 
 
--(void)startFetching
-{
-    NSLog(@"Fetching...");
-   
-   
-    //[self.loading startAnimating];
-    [self setStart:[NSDate date]];
-    //NSLog(@"%@",self.start);
- 
-    
-}
 
 -(void)stopFetching:(NSString *)result
 {
@@ -82,10 +77,8 @@
     NSTimeInterval time = [self.start timeIntervalSinceNow];
     float a = fabsf(time);
     NSString *timeLabel = [NSString stringWithFormat:@"%@%.2f%@",@" codes in ",a , @" seconds"];
-   
     
-  
-   
+     
     _objects = [[NSMutableArray alloc] init];
     
     NSMutableArray *arrayCH =[[NSMutableArray alloc] init];
@@ -130,27 +123,17 @@
     
     [table reloadData];
     
+    [SVProgressHUD dismiss];
+    
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned Information" message:[NSString stringWithFormat:@"%i%@", numberOfCodes,timeLabel] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
     
     [alert show];
- 
     
     NSLog(@"Done Fetching!");
     
-   
-    //[self.loading stopAnimating];
-  
+    
 }
 
-- (void)insertNewObject:(id)sender
-{
-    if (!_objects) {
-        _objects = [[NSMutableArray alloc] init];
-    }
-    [_objects insertObject:[NSString stringWithFormat:@"%@",@""] atIndex:0];
-    NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
-    [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
-}
 
 #pragma mark - Table View
 
@@ -169,10 +152,14 @@
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
     
-    if(section == 0){
-        return @"Chapters";}
-    else if(section == 1){
-        return @"Blocks";}
+    if(section == 0)
+    {
+        return @"Chapters";
+    }
+    else if(section == 1)
+    {
+        return @"Blocks";
+    }
     else
         return @"Categories";
 }
@@ -238,10 +225,8 @@
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
     if (searchBar == _searchBar) {
-        [self startFetching];
         [self fetchAddress:_searchBar.text];
         [self.view endEditing:YES];
-        
     }
 
 }
