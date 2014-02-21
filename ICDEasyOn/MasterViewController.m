@@ -88,33 +88,49 @@
    
     _objects = [[NSMutableArray alloc] init];
     
-    
+    NSMutableArray *arrayCH =[[NSMutableArray alloc] init];
+    NSMutableArray *arrayBL =[[NSMutableArray alloc] init];
+    NSMutableArray *arrayCA =[[NSMutableArray alloc] init];
+  
    AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
     NSString *inToast=@"";
+    int numberOfCodes=0;
     
     for (CodeICD *object in [app.listArray copy] ){
         
         if([object.Type isEqualToString:@"CH"]){
             inToast=@"Chapter ";
+            [arrayCH addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+            numberOfCodes++;
         }
         else if([object.Type isEqualToString:@"BL"]){
             inToast=@"Block ";
-         
+            [arrayBL addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+            numberOfCodes++;
         }
         else if([object.Type isEqualToString:@"CA"]){
             inToast=@"Category ";
-           
+            [arrayCA addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+            numberOfCodes++;
         }
-        [_objects addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
-   
+        
         
     }
+    
+    NSDictionary *dictCH = [NSDictionary dictionaryWithObject:arrayCH forKey:@"data"];
+    [_objects addObject:dictCH];
+    
+    NSDictionary *dictBL = [NSDictionary dictionaryWithObject:arrayBL forKey:@"data"];
+    [_objects addObject:dictBL];
+    
+    NSDictionary *dictCA = [NSDictionary dictionaryWithObject:arrayCA forKey:@"data"];
+    [_objects addObject:dictCA];
     
     
     [table reloadData];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned Information" message:[NSString stringWithFormat:@"%i%@", _objects.count,timeLabel] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned Information" message:[NSString stringWithFormat:@"%i%@", numberOfCodes,timeLabel] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
     
     [alert show];
  
@@ -131,7 +147,7 @@
     if (!_objects) {
         _objects = [[NSMutableArray alloc] init];
     }
-    [_objects insertObject:[NSDate date] atIndex:0];
+    [_objects insertObject:[NSString stringWithFormat:@"%@",@""] atIndex:0];
     NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:0];
     [self.tableView insertRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationAutomatic];
 }
@@ -140,20 +156,41 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return 1;
+    return [_objects count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _objects.count;
+    //Number of rows it should expect should be based on the section
+    NSDictionary *dictionary = [_objects objectAtIndex:section];
+    NSArray *array = [dictionary objectForKey:@"data"];
+    return [array count];
+}
+
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    
+    if(section == 0){
+        return @"Chapters";}
+    else if(section == 1){
+        return @"Blocks";}
+    else
+        return @"Categories";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-
-    NSDate *object = _objects[indexPath.row];
-    cell.textLabel.text = [object description];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    
+    NSDictionary *dictionary = [_objects objectAtIndex:indexPath.section];
+    NSArray *array = [dictionary objectForKey:@"data"];
+    NSString *cellValue = [array objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellValue;
+    
     return cell;
 }
 
