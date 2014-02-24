@@ -7,12 +7,16 @@
 //
 
 #import "BookmarksController.h"
+#import "GDataParser.h"
+#import "AppDelegate.h"
+#import "DetailViewController.h"
 
 @interface BookmarksController ()
-@property (nonatomic, strong) NSArray *menuItems;
+
 @end
 
 @implementation BookmarksController
+@synthesize table,menuItems;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,6 +31,13 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+     AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    menuItems = app.bookmarkCodes;
+    /*
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:menuItems] forKey:@"bookmarkArray"];
+     */
 }
 
 - (void)didReceiveMemoryWarning
@@ -38,15 +49,37 @@
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
-    return _menuItems.count;
+    return menuItems.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    NSString *CellIdentifier = [self.menuItems objectAtIndex:indexPath.row];
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
+    static NSString *CellIdentifier = @"Cell";
+    
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+    CodeICD *cellValue = [menuItems objectAtIndex:indexPath.row];
+    cell.textLabel.text = cellValue.Preferred;
     
     return cell;
+}
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    
+    
+    if ([[segue identifier] isEqualToString:@"showDetai"]) {
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        CodeICD *code = [menuItems objectAtIndex:indexPath.row];
+        DetailViewController *d = [segue destinationViewController];
+        d.codeICD = code;
+        d.inBookmarks = YES;
+        d.title = [[[self.table cellForRowAtIndexPath:indexPath] textLabel ]text];
+        
+        
+    }
+    
 }
 
 - (IBAction)showMenu:(id)sender {

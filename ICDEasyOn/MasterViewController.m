@@ -39,6 +39,8 @@
     [defaults setBool:NO forKey:@"codingChecked"];
     [defaults synchronize];
     
+   
+    
 }
 
 
@@ -87,24 +89,24 @@
   
    AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
-    NSString *inToast=@"";
+   
     int numberOfCodes=0;
     
     for (CodeICD *object in [app.listArray copy] ){
         
         if([object.Type isEqualToString:@"CH"]){
-            inToast=@"Chapter ";
-            [arrayCH addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+            
+            [arrayCH addObject:object];
             numberOfCodes++;
         }
         else if([object.Type isEqualToString:@"BL"]){
-            inToast=@"Block ";
-            [arrayBL addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+           
+            [arrayBL addObject:object];
             numberOfCodes++;
         }
         else if([object.Type isEqualToString:@"CA"]){
-            inToast=@"Category ";
-            [arrayCA addObject:[NSString stringWithFormat:@"%@%@",inToast,object.Code]];
+           
+            [arrayCA addObject:object];
             numberOfCodes++;
         }
         
@@ -175,8 +177,25 @@
     
     NSDictionary *dictionary = [_objects objectAtIndex:indexPath.section];
     NSArray *array = [dictionary objectForKey:@"data"];
-    NSString *cellValue = [array objectAtIndex:indexPath.row];
-    cell.textLabel.text = cellValue;
+    CodeICD *codeICD = [array objectAtIndex:indexPath.row];
+    
+    switch (indexPath.section) {
+        case 0:
+             cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Chapter ",codeICD.Code];
+            break;
+            
+        case 1:
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Block ",codeICD.Code];
+
+            break;
+        case 2:
+            cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Category ",codeICD.Code];
+
+            break;
+        
+    }
+    
+   
     
     return cell;
 }
@@ -201,13 +220,16 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-      AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        CodeICD *code = app.listArray[indexPath.row];
+        
+        NSDictionary *dictionary = [_objects objectAtIndex:indexPath.section];
+        NSArray *array = [dictionary objectForKey:@"data"];
+         CodeICD *code = array[indexPath.row];
+        
         DetailViewController *d = [segue destinationViewController];
-        d.loadHtml = code.HtmlResult;
+        d.codeICD = code;
        
         d.title = [[[self.table cellForRowAtIndexPath:indexPath] textLabel ]text];
         

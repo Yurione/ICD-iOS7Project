@@ -7,16 +7,14 @@
 //
 
 #import "AppDelegate.h"
-#import "GDataParser.h"
 
 @implementation AppDelegate
-@synthesize bookmarkCodes;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
-    bookmarkCodes = [GDataParser loadFile];
+   
     return YES;
 }
 							

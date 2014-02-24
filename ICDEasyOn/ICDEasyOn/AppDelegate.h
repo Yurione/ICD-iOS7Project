@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate>{
-    NSMutableArray *bookmarkCodes;
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
-@property (strong, nonatomic) NSMutableArray *bookmarkCodes;
 @property (strong, nonatomic) NSMutableArray *listArray;
 
 @end

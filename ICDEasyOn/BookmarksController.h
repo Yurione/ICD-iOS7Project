@@ -10,5 +10,6 @@
 #import "RESideMenu.h"
 @interface BookmarksController : UITableViewController
 - (IBAction)showMenu:(id)sender;
-
+@property (strong, nonatomic) IBOutlet UITableView *table;
+@property (nonatomic, strong) NSArray *menuItems;
 @end

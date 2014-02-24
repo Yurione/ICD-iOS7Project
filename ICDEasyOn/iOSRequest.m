@@ -45,7 +45,7 @@
                                        queue:backgroundQueue
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                                
-                               NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];                             
+                               NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
         
                                
                                Parser *theParser = [[Parser alloc] initParser];
