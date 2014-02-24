@@ -34,6 +34,7 @@
      AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
     menuItems = app.bookmarkCodes;
+    
  
 }
 
@@ -78,8 +79,41 @@
     }
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:NO animated:YES];
+}
+
+- (void)viewWillDisappear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
+}
 
 - (IBAction)showMenu:(id)sender {
       [self.sideMenuViewController presentMenuViewController];
 }
+
+- (IBAction)bookmarksActivity:(id)sender {
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:nil
+                                                             delegate:self
+                                                    cancelButtonTitle:@"Cancel"
+                                               destructiveButtonTitle:nil otherButtonTitles:@"Import",@"Export", nil];
+   
+    [actionSheet showInView:self.view];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionsheet clickedButtonAtIndex:(NSInteger)buttonIndex{
+    
+    switch (buttonIndex) {
+        case 0:
+            NSLog(@"%@",@"Import");
+            break;
+            
+        case 1:
+             NSLog(@"%@",@"Export");
+            break;
+    }
+}
+
 @end

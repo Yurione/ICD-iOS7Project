@@ -89,7 +89,6 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
-                    <nil key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="_searchBar" destination="slX-Ud-p0b" id="R6q-jl-i7V"/>
                         <outlet property="searchDisplayController" destination="sC1-4P-8eZ" id="5xB-fj-EbL"/>
@@ -134,6 +133,13 @@
                             <outlet property="delegate" destination="PBJ-UL-gAz" id="lnp-ys-pvs"/>
                         </connections>
                     </tableView>
+                    <toolbarItems>
+                        <barButtonItem systemItem="bookmarks" id="jIx-Wu-Tvw">
+                            <connections>
+                                <action selector="bookmarksActivity:" destination="PBJ-UL-gAz" id="CIw-iU-Kbu"/>
+                            </connections>
+                        </barButtonItem>
+                    </toolbarItems>
                     <navigationItem key="navigationItem" title="Bookmarks" id="Kwn-f5-dOF">
                         <barButtonItem key="leftBarButtonItem" image="menu-26.png" id="FBZ-s1-gjG">
                             <connections>
@@ -141,6 +147,7 @@
                             </connections>
                         </barButtonItem>
                     </navigationItem>
+                    <simulatedToolbarMetrics key="simulatedBottomBarMetrics"/>
                     <connections>
                         <outlet property="table" destination="Rep-lG-nbe" id="lio-Zg-zjh"/>
                     </connections>
@@ -362,6 +369,6 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="jUr-3t-vfg"/>
+        <segue reference="BaU-WU-i1z"/>
     </inferredMetricsTieBreakers>
 </document>

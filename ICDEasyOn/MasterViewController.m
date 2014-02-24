@@ -242,6 +242,10 @@
     [self.sideMenuViewController presentMenuViewController];
     
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+    [self.navigationController setToolbarHidden:YES animated:YES];
+}
 
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar

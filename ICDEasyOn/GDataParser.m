@@ -23,7 +23,14 @@
     NSError *error;
     GDataXMLDocument *doc = [[GDataXMLDocument alloc] initWithData:xmlData
                                                            options:0 error:&error];
-    if (doc == nil) { return nil; }
+    if (error != nil) {
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Parser Error" message:@"Bookmarks file corrupted!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+        
+        [alert show];
+        
+        return nil;
+    }
     
     NSMutableArray *array = [[NSMutableArray alloc] init];
     NSArray *codeMembers = [doc.rootElement elementsForName:@"entry"];
