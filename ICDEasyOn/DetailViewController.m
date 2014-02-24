@@ -7,13 +7,13 @@
 //
 
 #import "DetailViewController.h"
-#import "AppDelegate.h"
+
 @interface DetailViewController ()
 
 @end
 
 @implementation DetailViewController
-@synthesize webview,codeICD,star,inBookmarks,arrayBookmarks;
+@synthesize webview,codeICD,star,inBookmarks,arrayBookmarks,app;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -27,16 +27,11 @@
 {
     [super viewDidLoad];
     [webview loadHTMLString:codeICD.HtmlResult baseURL:nil];
- /*
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    NSData *data =[defaults objectForKey:@"bookmarkArray"];
-    NSArray *array =[NSKeyedUnarchiver unarchiveObjectWithData:data];
-    arrayBookmarks=[[NSMutableArray alloc] initWithArray:array];
-  */
-     AppDelegate *app = [[UIApplication sharedApplication] delegate];
+
+     app = [[UIApplication sharedApplication] delegate];
     arrayBookmarks= app.bookmarkCodes;
     if ([arrayBookmarks containsObject:codeICD]) {
-       
+        inBookmarks=YES;
         [star setImage:[UIImage imageNamed:@"star-32.png"]];
     }
 
@@ -53,10 +48,22 @@
     if (inBookmarks) {
         [star setImage:[UIImage imageNamed:@"outline_star-256.png"]];
         inBookmarks=!inBookmarks;
+        
+         [app.bookmarkCodes removeObject:codeICD];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
+        [defaults synchronize];
     }
     else{
         [star setImage:[UIImage imageNamed:@"star-32.png"]];
         inBookmarks=!inBookmarks;
+        
+        [app.bookmarkCodes addObject:codeICD];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
+        [defaults synchronize];
     }
     
     

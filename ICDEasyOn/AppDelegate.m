@@ -16,7 +16,13 @@
 {
     // Override point for customization after application launch.
     
-    bookmarkCodes = [GDataParser loadFile];
+    //bookmarkCodes = [GDataParser loadFile];
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data =[defaults objectForKey:@"bookmarkCodes"];
+    NSArray *array =[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    bookmarkCodes=[[NSMutableArray alloc] initWithArray:array];
+    
+    
     return YES;
 }
 							

@@ -34,10 +34,7 @@
      AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
     menuItems = app.bookmarkCodes;
-    /*
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:menuItems] forKey:@"bookmarkArray"];
-     */
+ 
 }
 
 - (void)didReceiveMemoryWarning
@@ -74,7 +71,7 @@
         CodeICD *code = [menuItems objectAtIndex:indexPath.row];
         DetailViewController *d = [segue destinationViewController];
         d.codeICD = code;
-        d.inBookmarks = YES;
+    
         d.title = [[[self.table cellForRowAtIndexPath:indexPath] textLabel ]text];
         
         

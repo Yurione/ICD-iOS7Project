@@ -8,10 +8,11 @@
 
 #import <UIKit/UIKit.h>
 #import "CodeICD.h"
-
+#import "AppDelegate.h"
 @interface DetailViewController : UIViewController{
     NSMutableArray *arrayBookmarks;
     CodeICD *codeICD;
+    AppDelegate *app;
 }
 
 
@@ -22,4 +23,5 @@
 @property (strong, nonatomic) CodeICD *codeICD;
 @property (assign) BOOL inBookmarks;
 @property (nonatomic,strong) NSMutableArray *arrayBookmarks;
+@property (strong, nonatomic) AppDelegate *app;
 @end
