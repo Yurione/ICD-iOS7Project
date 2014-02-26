@@ -19,7 +19,7 @@
     search = [search URLEncode];
     NSString *titleS = ([defaults boolForKey:@"titleChecked"]) ? @"True" : @"False";
     NSString *definitionS = ([defaults boolForKey:@"definitionChecked"]) ? @"True" : @"False";
-    NSString *noteS = ([defaults boolForKey:@"noteCkecked"]) ? @"True" : @"False";
+    NSString *noteS = ([defaults boolForKey:@"noteChecked"]) ? @"True" : @"False";
     NSString *inclusionS = ([defaults boolForKey:@"inclusionChecked"]) ? @"True" : @"False";
     NSString *exclusionS = ([defaults boolForKey:@"exclusionChecked"]) ? @"True" : @"False";
     NSString *codingS = ([defaults boolForKey:@"codingChecked"]) ? @"True" : @"False";

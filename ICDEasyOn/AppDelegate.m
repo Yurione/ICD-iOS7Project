@@ -9,20 +9,23 @@
 #import "AppDelegate.h"
 #import "GDataParser.h"
 
+
 @implementation AppDelegate
-@synthesize bookmarkCodes;
+@synthesize bookmarkCodes,historyCodes;
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // Override point for customization after application launch.
     
-    //bookmarkCodes = [GDataParser loadFile];
-    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+   NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     NSData *data =[defaults objectForKey:@"bookmarkCodes"];
     NSArray *array =[NSKeyedUnarchiver unarchiveObjectWithData:data];
     bookmarkCodes=[[NSMutableArray alloc] initWithArray:array];
-    
-    
+    NSData *data2 =[defaults objectForKey:@"historyCodes"];
+    NSArray *array2 =[NSKeyedUnarchiver unarchiveObjectWithData:data2];
+    historyCodes = [[NSMutableArray alloc] initWithArray:array2];
+   
     return YES;
 }
 							

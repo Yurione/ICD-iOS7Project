@@ -31,10 +31,12 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
+    self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    
      AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
-    menuItems = app.bookmarkCodes;
-    
+    menuItems = [[NSMutableArray alloc]initWithArray:app.bookmarkCodes];
+ 
+  
  
 }
 
@@ -42,6 +44,11 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return 1;
 }
 
 
@@ -59,10 +66,52 @@
         cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
     }
     CodeICD *cellValue = [menuItems objectAtIndex:indexPath.row];
-    cell.textLabel.text = cellValue.Preferred;
+    
+    if([cellValue.Type isEqualToString:@"CH"]){
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Chapter ",cellValue.Code];
+       
+    }
+    
+    else if([cellValue.Type isEqualToString:@"BL"]){
+        
+         cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Block ",cellValue.Code];
+        
+    }
+    
+    else{
+        
+        cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Category ",cellValue.Code];
+        
+    }
+   cell.detailTextLabel.text = cellValue.Preferred;
     
     return cell;
 }
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        AppDelegate *app = [[UIApplication sharedApplication] delegate];
+        [app.bookmarkCodes removeObjectAtIndex:indexPath.row];
+        
+        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+        [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
+        [defaults synchronize];
+        
+        [menuItems removeObjectAtIndex:indexPath.row];
+        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
+        
+    }
+}
+
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     
@@ -82,6 +131,14 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [self.navigationController setToolbarHidden:NO animated:YES];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    NSData *data =[defaults objectForKey:@"bookmarkCodes"];
+    NSArray *array =[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    
+   [menuItems setArray:array];
+    
+    [table reloadData];
 }
 
 - (void)viewWillDisappear:(BOOL)animated
@@ -105,15 +162,106 @@
 
 -(void)actionSheet:(UIActionSheet *)actionsheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     
+     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     switch (buttonIndex) {
         case 0:
+        {
             NSLog(@"%@",@"Import");
-            break;
             
-        case 1:
-             NSLog(@"%@",@"Export");
+            [app.bookmarkCodes setArray:[GDataParser loadFile]];
+            [menuItems setArray:[GDataParser loadFile]];
+            [table reloadData];
+            NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+            [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
+            [defaults synchronize];
+            
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Import" message:[NSString stringWithFormat:@"Imported %d codes from bookmarks file with success!",menuItems.count] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+            
+            [alert show];
+            
             break;
+        }
+        case 1:
+        {
+             NSLog(@"%@",@"Export");
+            if ([MFMailComposeViewController canSendMail])
+                // The device can send email.
+            {
+                [self displayMailComposerSheet];
+            }
+            else
+                // The device can not send email.
+            {
+                UIAlertView *alert = [[UIAlertView alloc] initWithTitle:nil message:@"Device not configured to send mail" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+                
+                [alert show];
+               
+            }
+            
+           
+            
+            break;
+        }
     }
 }
+- (void)displayMailComposerSheet
+{
+    //Update the bookmarks xml file
+    
+    [GDataParser saveBookmarks];
+    
+    
+    // Email Subject
+    NSString *emailTitle = @"Test Email";
+    // Email Content
+    NSString *messageBody = @"<h1>Learning iOS Programming!</h1>"; // Change the message body to HTML
+    // To address
+    NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
+    
+   
+    
+    
+    MFMailComposeViewController *mc = [[MFMailComposeViewController alloc] init];
+    mc.mailComposeDelegate = self;
+    [mc setSubject:emailTitle];
+    [mc setMessageBody:messageBody isHTML:YES];
+    [mc setToRecipients:toRecipents];
+    
+    // Attach an xml file to the email
+    NSString *path = [[NSBundle mainBundle] pathForResource:@"bookmarks" ofType:@"xml"];
+    NSData *myData = [NSData dataWithContentsOfFile:path];
+    [mc addAttachmentData:myData mimeType:@"application/xml" fileName:@"bookmarks"];
+    
+    // Present mail view controller on screen
+    [self presentViewController:mc animated:YES completion:NULL];
+    
+}
+- (void) mailComposeController:(MFMailComposeViewController *)controller didFinishWithResult:(MFMailComposeResult)result error:(NSError *)error
+{
+    switch (result)
+    {
+        case MFMailComposeResultCancelled:
+            NSLog(@"Mail cancelled");
+            break;
+        case MFMailComposeResultSaved:
+            NSLog(@"Mail saved");
+            break;
+        case MFMailComposeResultSent:
+            NSLog(@"Mail sent");
+            break;
+        case MFMailComposeResultFailed:
+            NSLog(@"Mail sent failure: %@", [error localizedDescription]);
+            break;
+        default:
+            break;
+    }
+    
+    // Close the Mail Interface
+    [self dismissViewControllerAnimated:YES completion:NULL];
+}
+
+
+
+
 
 @end

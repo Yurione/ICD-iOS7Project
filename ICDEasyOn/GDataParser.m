@@ -9,11 +9,20 @@
 #import "GDataParser.h"
 #import "GDataXMLNode.h"
 #import "CodeICD.h"
+#import "AppDelegate.h"
 
 @implementation GDataParser
 
 + (NSString *)dataFilePath:(BOOL)forSave {
-    return [[NSBundle mainBundle] pathForResource:@"bookmarks" ofType:@"xml"];
+    
+    NSArray *paths = NSSearchPathForDirectoriesInDomains(NSDocumentDirectory, NSUserDomainMask, YES);
+	NSString *documentsDirectory = [paths objectAtIndex:0];
+	NSString *documentsPath = [documentsDirectory stringByAppendingPathComponent:@"bookmarks.xml"];
+    if (forSave || [[NSFileManager defaultManager] fileExistsAtPath:documentsPath]) {
+        return documentsPath;
+    } else {
+        return [[NSBundle mainBundle] pathForResource:@"bookmarks" ofType:@"xml"];
+    }
 }
 
 + (NSMutableArray *)loadFile {
@@ -73,6 +82,44 @@
     
    
     return array;
+    
+}
+
++ (void)saveBookmarks {
+    
+    //IMPLEMENTAR ADAPTADO DISTO
+      AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    GDataXMLElement * rootElement = [GDataXMLNode elementWithName:@"bookmarks"];
+    
+    for(CodeICD *codeICD in app.bookmarkCodes) {
+        
+        GDataXMLElement * entryElement = [GDataXMLNode elementWithName:@"entry"];
+       
+        [entryElement addAttribute:[GDataXMLNode attributeWithName:@"id" stringValue:codeICD.Id]];
+        
+        GDataXMLElement * codeElement = [GDataXMLNode elementWithName:@"code" stringValue:codeICD.Code];
+        GDataXMLElement * preferredElement = [GDataXMLNode elementWithName:@"preferred" stringValue:codeICD.Preferred];
+       
+        GDataXMLElement * htmlElement = [GDataXMLNode elementWithName:@"htmlResult" stringValue:codeICD.HtmlResult];
+        
+         GDataXMLElement * typeElement = [GDataXMLNode elementWithName:@"type" stringValue:codeICD.Type];
+        
+        
+        [entryElement addChild:codeElement];
+        [entryElement addChild:preferredElement];
+        [entryElement addChild:htmlElement];
+        [entryElement addChild:typeElement];
+        [rootElement addChild:entryElement];
+    }
+    
+    GDataXMLDocument *document = [[GDataXMLDocument alloc] initWithRootElement:rootElement];
+   
+    NSData *xmlData = document.XMLData;
+    NSLog(@"%@", document.rootElement);
+    NSString *filePath = [self dataFilePath:TRUE];
+    NSLog(@"Saving xml data to %@...", filePath);
+    [xmlData writeToFile:filePath atomically:YES];
     
 }
 

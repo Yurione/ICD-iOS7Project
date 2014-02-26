@@ -12,5 +12,6 @@
 
 
 + (NSMutableArray *)loadFile;
++ (void)saveBookmarks;
 
 @end

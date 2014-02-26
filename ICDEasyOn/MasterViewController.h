@@ -8,13 +8,17 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-@interface MasterViewController : UITableViewController
+@interface MasterViewController : UITableViewController{
+     BOOL fromHistory;
+    NSString *text;
+}
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
 @property (strong, nonatomic) IBOutlet UISearchBar *_searchBar;
 @property (strong, nonatomic) NSDate *start;
 @property (strong, nonatomic) NSMutableArray *_objects;
-
+@property (assign, nonatomic) BOOL fromHistory;
+@property (strong, nonatomic) NSString *text;
 
 - (IBAction)showMenu:(id)sender;
 

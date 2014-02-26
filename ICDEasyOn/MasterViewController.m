@@ -13,16 +13,17 @@
 #import "CodeICD.h"
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"
+#import "History.h"
 
 @interface MasterViewController () {
   
-
+   
 }
 @end
 
 @implementation MasterViewController
 
-@synthesize table,_searchBar,_objects;
+@synthesize table,_searchBar,_objects,fromHistory,text;
 
 
 
@@ -30,7 +31,7 @@
 - (void)viewDidLoad
 {
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-    
+    if(!fromHistory){
     [defaults setBool:YES forKey:@"titleChecked"];
     [defaults setBool:NO forKey:@"definitionChecked"];
     [defaults setBool:NO forKey:@"inclusionChecked"];
@@ -38,11 +39,24 @@
     [defaults setBool:NO forKey:@"noteChecked"];
     [defaults setBool:NO forKey:@"codingChecked"];
     [defaults synchronize];
+    }
+    else{
+      
+        [self searchBarTextDidBeginEditing:_searchBar];
+        [self searchBarSearchButtonClicked:_searchBar];
     
+    }
+        
    
     
 }
 
+- (void)searchBarTextDidBeginEditing:(UISearchBar *)searchBar{
+    if (fromHistory) {
+       searchBar.text = text;
+    }
+    
+}
 
 -(void)fetchAddress:(NSString *)address
 {
@@ -52,6 +66,7 @@
     [self setStart:[NSDate date]];
     
     [SVProgressHUD showWithStatus:@"Searching for keyword..."];
+    
     
      [iOSRequest requestToPath:address 
                  onCompletion:^(NSString *result, NSError *error) {
@@ -182,6 +197,7 @@
     switch (indexPath.section) {
         case 0:
              cell.textLabel.text = [NSString stringWithFormat:@"%@%@",@"Chapter ",codeICD.Code];
+            
             break;
             
         case 1:
@@ -195,25 +211,9 @@
         
     }
     
-   
+   cell.detailTextLabel.text = codeICD.Preferred;
     
     return cell;
-}
-
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        [_objects removeObjectAtIndex:indexPath.row];
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    } else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view.
-    }
 }
 
 
@@ -246,14 +246,48 @@
 {
     [self.navigationController setToolbarHidden:YES animated:YES];
 }
-
+- (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
+    [self.view endEditing:YES];
+}
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
-    if (searchBar == _searchBar) {
+    if (fromHistory) {
         [self fetchAddress:_searchBar.text];
         [self.view endEditing:YES];
+        fromHistory = !fromHistory;
+        
+    }else{
+        [self fetchAddress:_searchBar.text];
+        [self.view endEditing:YES];
+        [self addCodeToHistory:_searchBar.text];
     }
 
+}
+
+
+-(void)addCodeToHistory:(NSString *) keyword{
+    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+    
+    NSString *titleS = ([defaults boolForKey:@"titleChecked"]) ? @"YES" : @"NO";
+    NSString *definitionS = ([defaults boolForKey:@"definitionChecked"]) ? @"YES" : @"NO";
+    NSString *noteS = ([defaults boolForKey:@"noteChecked"]) ? @"YES" : @"NO";
+    NSString *inclusionS = ([defaults boolForKey:@"inclusionChecked"]) ? @"YES" : @"NO";
+    NSString *exclusionS = ([defaults boolForKey:@"exclusionChecked"]) ? @"YES" : @"NO";
+    NSString *codingS = ([defaults boolForKey:@"codingChecked"]) ? @"YES" : @"NO";
+    
+    NSArray *array = [NSArray arrayWithObjects:titleS,definitionS,noteS,inclusionS,exclusionS,codingS, nil];
+    NSDictionary *dictio = [NSDictionary dictionaryWithObject:array forKey:@"optionsArray"];
+    
+    History *history = [[History alloc] initWithKeyword:keyword andDate:[NSDate date] andOptions:dictio];
+    
+    [app.historyCodes addObject:history];
+    
+    [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.historyCodes] forKey:@"historyCodes"];
+    [defaults synchronize];
+    
+    
 }
 @end

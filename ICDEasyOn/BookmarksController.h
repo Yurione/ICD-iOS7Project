@@ -8,10 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-@interface BookmarksController : UITableViewController <UIActionSheetDelegate>
+#import <MessageUI/MessageUI.h> 
+
+@interface BookmarksController : UITableViewController <UIActionSheetDelegate,MFMailComposeViewControllerDelegate>
 
 @property (strong, nonatomic) IBOutlet UITableView *table;
-@property (nonatomic, strong) NSArray *menuItems;
+@property (nonatomic, strong) NSMutableArray *menuItems;
 
 - (IBAction)showMenu:(id)sender;
 - (IBAction)bookmarksActivity:(id)sender;

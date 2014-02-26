@@ -10,10 +10,12 @@
 
 @interface AppDelegate : UIResponder <UIApplicationDelegate>{
     NSMutableArray *bookmarkCodes;
+    NSMutableArray *historyCodes;
 }
 
 @property (strong, nonatomic) UIWindow *window;
 @property (strong, nonatomic) NSMutableArray *bookmarkCodes;
+@property (strong, nonatomic) NSMutableArray *historyCodes;
 @property (strong, nonatomic) NSMutableArray *listArray;
 
 @end

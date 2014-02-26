@@ -54,6 +54,10 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
         [defaults synchronize];
+        
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bookmarks" message:@"Code deleted from bookmarks with success!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+        
+        [alert show];
     }
     else{
         [star setImage:[UIImage imageNamed:@"star-32.png"]];
@@ -64,6 +68,10 @@
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
         [defaults synchronize];
+        
+         UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bookmarks" message:@"Code added to bookmarks with success!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+        
+        [alert show];
     }
     
     

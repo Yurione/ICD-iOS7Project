@@ -56,7 +56,9 @@
             navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"secondController"]];
             [self.sideMenuViewController hideMenuViewController];
             break;
-        default:
+        case 2:
+            navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"thirdController"]];
+            [self.sideMenuViewController hideMenuViewController];
             break;
     }
 }
@@ -107,7 +109,7 @@
 {
     return UIStatusBarStyleLightContent;
 }
-
+/*
 #pragma mark -
 #pragma mark RESideMenu Delegate
 
@@ -130,6 +132,6 @@
 {
     NSLog(@"didHideMenuViewController");
 }
-
+*/
 
 @end
