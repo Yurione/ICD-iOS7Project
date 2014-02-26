@@ -9,7 +9,7 @@
 #import "MasterViewController.h"
 #import "iOSRequest.h"
 #import "DetailViewController.h"
-#import "SettingsController.h"
+#import "AdvancedSearchViewController.h"
 #import "CodeICD.h"
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"

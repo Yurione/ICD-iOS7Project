@@ -39,7 +39,7 @@
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-165" y="-790"/>
+            <point key="canvasLocation" x="-201" y="-222"/>
         </scene>
         <!--Master View Controller - Master-->
         <scene sceneID="VgW-fR-Quf">
@@ -184,7 +184,7 @@
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYY-gG-iJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="259" y="642"/>
+            <point key="canvasLocation" x="359" y="394"/>
         </scene>
         <!--Bookmarks Controller - Bookmarks-->
         <scene sceneID="dyd-g4-4Mf">
@@ -263,12 +263,12 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="uXQ-0R-2RG" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-695" y="541"/>
+            <point key="canvasLocation" x="-680" y="497"/>
         </scene>
-        <!--Settings Controller - Advanced-->
+        <!--Advanced Search View Controller - Advanced-->
         <scene sceneID="7bL-T0-hod">
             <objects>
-                <tableViewController hidesBottomBarWhenPushed="YES" id="QkY-7B-wj3" customClass="SettingsController" sceneMemberID="viewController">
+                <tableViewController hidesBottomBarWhenPushed="YES" id="QkY-7B-wj3" customClass="AdvancedSearchViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="grouped" separatorStyle="default" rowHeight="44" sectionHeaderHeight="10" sectionFooterHeight="10" id="SCb-4v-I2C">
                         <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -464,7 +464,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="TzY-Vj-eU6"/>
         <segue reference="jUr-3t-vfg"/>
+        <segue reference="TzY-Vj-eU6"/>
     </inferredMetricsTieBreakers>
 </document>
