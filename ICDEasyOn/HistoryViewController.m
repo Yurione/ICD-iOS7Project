@@ -68,7 +68,7 @@
         int historyMonth = [components month];
         int historyDay =
         [gregorian ordinalityOfUnit:NSDayCalendarUnit
-                             inUnit:NSYearCalendarUnit forDate:[NSDate date]];
+                             inUnit:NSYearCalendarUnit forDate:history.date];
         
         if (historyYear == thisYear) {
             
@@ -116,7 +116,7 @@
     [_objects addObject:dictO];
     
   
-    // [table reloadData];
+   
 }
 
 

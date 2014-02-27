@@ -15,6 +15,14 @@
 		8383AEB218A5D7D6000DAFC7 /* star-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEAE18A5D7D6000DAFC7 /* star-32.png */; };
 		8383AEB418A5D7D6000DAFC7 /* statistics-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 8383AEB018A5D7D6000DAFC7 /* statistics-256.png */; };
 		83AFF1A618BEA1EA00C5D3E0 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 83AFF1A518BEA1EA00C5D3E0 /* QuartzCore.framework */; };
+		83AFF1A918BEA4A700C5D3E0 /* StatisticsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AFF1A818BEA4A700C5D3E0 /* StatisticsViewController.m */; };
+		83AFF1AB18BEAAFC00C5D3E0 /* bar_chart-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AFF1AA18BEAAFC00C5D3E0 /* bar_chart-32.png */; };
+		83AFF1AD18BEAB0900C5D3E0 /* pie_chart-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AFF1AC18BEAB0900C5D3E0 /* pie_chart-32.png */; };
+		83AFF1AF18BEAB1300C5D3E0 /* scatter_plot-32.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AFF1AE18BEAB1300C5D3E0 /* scatter_plot-32.png */; };
+		83AFF1B118BEAB3500C5D3E0 /* pie_chart-25.png in Resources */ = {isa = PBXBuildFile; fileRef = 83AFF1B018BEAB3500C5D3E0 /* pie_chart-25.png */; };
+		83AFF1B418BEB0EE00C5D3E0 /* PieChartViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AFF1B318BEB0EE00C5D3E0 /* PieChartViewController.m */; };
+		83AFF1B718BEB33000C5D3E0 /* DataPieChart.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AFF1B618BEB33000C5D3E0 /* DataPieChart.m */; };
+		83AFF1BA18BEC3E000C5D3E0 /* DataCenter.m in Sources */ = {isa = PBXBuildFile; fileRef = 83AFF1B918BEC3E000C5D3E0 /* DataCenter.m */; };
 		83DC3DF618B2FCC90059F2C1 /* BookmarksController.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DC3DF518B2FCC90059F2C1 /* BookmarksController.m */; };
 		83DD968818A4F63700C0C1E9 /* RECommonFunctions.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968318A4F63700C0C1E9 /* RECommonFunctions.m */; };
 		83DD968918A4F63700C0C1E9 /* RESideMenu.m in Sources */ = {isa = PBXBuildFile; fileRef = 83DD968518A4F63700C0C1E9 /* RESideMenu.m */; };
@@ -150,6 +158,18 @@
 		8383AEAE18A5D7D6000DAFC7 /* star-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "star-32.png"; sourceTree = "<group>"; };
 		8383AEB018A5D7D6000DAFC7 /* statistics-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "statistics-256.png"; sourceTree = "<group>"; };
 		83AFF1A518BEA1EA00C5D3E0 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		83AFF1A718BEA4A700C5D3E0 /* StatisticsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StatisticsViewController.h; sourceTree = "<group>"; };
+		83AFF1A818BEA4A700C5D3E0 /* StatisticsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StatisticsViewController.m; sourceTree = "<group>"; };
+		83AFF1AA18BEAAFC00C5D3E0 /* bar_chart-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bar_chart-32.png"; sourceTree = "<group>"; };
+		83AFF1AC18BEAB0900C5D3E0 /* pie_chart-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pie_chart-32.png"; sourceTree = "<group>"; };
+		83AFF1AE18BEAB1300C5D3E0 /* scatter_plot-32.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "scatter_plot-32.png"; sourceTree = "<group>"; };
+		83AFF1B018BEAB3500C5D3E0 /* pie_chart-25.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "pie_chart-25.png"; sourceTree = "<group>"; };
+		83AFF1B218BEB0EE00C5D3E0 /* PieChartViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PieChartViewController.h; sourceTree = "<group>"; };
+		83AFF1B318BEB0EE00C5D3E0 /* PieChartViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PieChartViewController.m; sourceTree = "<group>"; };
+		83AFF1B518BEB33000C5D3E0 /* DataPieChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPieChart.h; sourceTree = "<group>"; };
+		83AFF1B618BEB33000C5D3E0 /* DataPieChart.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataPieChart.m; sourceTree = "<group>"; };
+		83AFF1B818BEC3E000C5D3E0 /* DataCenter.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataCenter.h; sourceTree = "<group>"; };
+		83AFF1B918BEC3E000C5D3E0 /* DataCenter.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DataCenter.m; sourceTree = "<group>"; };
 		83DC3DF418B2FCC90059F2C1 /* BookmarksController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BookmarksController.h; sourceTree = "<group>"; };
 		83DC3DF518B2FCC90059F2C1 /* BookmarksController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BookmarksController.m; sourceTree = "<group>"; };
 		83DD968218A4F63700C0C1E9 /* RECommonFunctions.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RECommonFunctions.h; sourceTree = "<group>"; };
@@ -349,6 +369,10 @@
 				83DC3DF518B2FCC90059F2C1 /* BookmarksController.m */,
 				83E0075018BD7C8700FAE7DF /* HistoryViewController.h */,
 				83E0075118BD7C8700FAE7DF /* HistoryViewController.m */,
+				83AFF1A718BEA4A700C5D3E0 /* StatisticsViewController.h */,
+				83AFF1A818BEA4A700C5D3E0 /* StatisticsViewController.m */,
+				83AFF1B218BEB0EE00C5D3E0 /* PieChartViewController.h */,
+				83AFF1B318BEB0EE00C5D3E0 /* PieChartViewController.m */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -449,6 +473,10 @@
 				83F3907918B8E3BA00345888 /* GDataParser.m */,
 				83E0074D18BD6A0800FAE7DF /* History.h */,
 				83E0074E18BD6A0800FAE7DF /* History.m */,
+				83AFF1B518BEB33000C5D3E0 /* DataPieChart.h */,
+				83AFF1B618BEB33000C5D3E0 /* DataPieChart.m */,
+				83AFF1B818BEC3E000C5D3E0 /* DataCenter.h */,
+				83AFF1B918BEC3E000C5D3E0 /* DataCenter.m */,
 			);
 			name = Model;
 			sourceTree = "<group>";
@@ -456,6 +484,10 @@
 		83E838E218A462670086F246 /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				83AFF1B018BEAB3500C5D3E0 /* pie_chart-25.png */,
+				83AFF1AE18BEAB1300C5D3E0 /* scatter_plot-32.png */,
+				83AFF1AC18BEAB0900C5D3E0 /* pie_chart-32.png */,
+				83AFF1AA18BEAAFC00C5D3E0 /* bar_chart-32.png */,
 				83ED4ABA18BAC1B30053FD43 /* star-512.png */,
 				83F11AD118B8242A00438928 /* fold.png */,
 				83043E0918A5E28300FA6DA6 /* outline_star-256.png */,
@@ -578,13 +610,17 @@
 			files = (
 				8383AEB118A5D7D6000DAFC7 /* search-32.png in Resources */,
 				8383AEB218A5D7D6000DAFC7 /* star-32.png in Resources */,
+				83AFF1AD18BEAB0900C5D3E0 /* pie_chart-32.png in Resources */,
 				8383AEAC18A5D7CB000DAFC7 /* history-256.png in Resources */,
 				83E838E618A4653A0086F246 /* menu-26.png in Resources */,
 				83ED4ABB18BAC1B30053FD43 /* star-512.png in Resources */,
+				83AFF1B118BEAB3500C5D3E0 /* pie_chart-25.png in Resources */,
 				83E838B918A402440086F246 /* Images.xcassets in Resources */,
+				83AFF1AB18BEAAFC00C5D3E0 /* bar_chart-32.png in Resources */,
 				83F11AC918B8119700438928 /* SVProgressHUD.bundle in Resources */,
 				83E838A818A402440086F246 /* InfoPlist.strings in Resources */,
 				83F11AD218B8242A00438928 /* fold.png in Resources */,
+				83AFF1AF18BEAB1300C5D3E0 /* scatter_plot-32.png in Resources */,
 				8383AEB418A5D7D6000DAFC7 /* statistics-256.png in Resources */,
 				83043E0A18A5E28300FA6DA6 /* outline_star-256.png in Resources */,
 				83E838B118A402440086F246 /* Main.storyboard in Resources */,
@@ -606,13 +642,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				83AFF1B418BEB0EE00C5D3E0 /* PieChartViewController.m in Sources */,
 				83E838AE18A402440086F246 /* AppDelegate.m in Sources */,
 				83DD968818A4F63700C0C1E9 /* RECommonFunctions.m in Sources */,
 				83F844F018B044F6000BAB03 /* AdvancedSearchViewController.m in Sources */,
+				83AFF1A918BEA4A700C5D3E0 /* StatisticsViewController.m in Sources */,
 				83E0075218BD7C8700FAE7DF /* HistoryViewController.m in Sources */,
 				83DC3DF618B2FCC90059F2C1 /* BookmarksController.m in Sources */,
 				83F3907A18B8E3BA00345888 /* GDataParser.m in Sources */,
+				83AFF1B718BEB33000C5D3E0 /* DataPieChart.m in Sources */,
 				83E0074F18BD6A0800FAE7DF /* History.m in Sources */,
+				83AFF1BA18BEC3E000C5D3E0 /* DataCenter.m in Sources */,
 				83E838DD18A455620086F246 /* iOSRequest.m in Sources */,
 				83E838E118A456C40086F246 /* NSString+WebService.m in Sources */,
 				83E838DC18A455620086F246 /* CodeICD.m in Sources */,

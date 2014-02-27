@@ -14,6 +14,7 @@
 #import "AppDelegate.h"
 #import "SVProgressHUD.h"
 #import "History.h"
+#import "DataCenter.h"
 
 @interface MasterViewController () {
   
@@ -261,6 +262,7 @@
         [self fetchAddress:_searchBar.text];
         [self.view endEditing:YES];
         [self addCodeToHistory:_searchBar.text];
+        [[DataCenter sharedInstance] addKeyword:_searchBar.text];
     }
 
 }

@@ -35,6 +35,7 @@
                         <segue destination="pGg-6v-bdr" kind="relationship" relationship="rootViewController" id="Waa-gP-0f1"/>
                         <segue destination="PBJ-UL-gAz" kind="push" identifier="showBookmarks" id="oDI-3a-7db"/>
                         <segue destination="zL0-Nn-AZp" kind="push" identifier="showHistory" id="jOr-MJ-Nef"/>
+                        <segue destination="v9d-j3-nxf" kind="push" identifier="showStatistics" id="38B-jO-G3F"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eq9-QA-ai8" sceneMemberID="firstResponder"/>
@@ -185,6 +186,63 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="NYY-gG-iJY" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="359" y="394"/>
+        </scene>
+        <!--Pie Chart View Controller - Pie Chart-->
+        <scene sceneID="O6P-fy-jrx">
+            <objects>
+                <viewController id="ddo-Vh-nj4" customClass="PieChartViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="Eb9-OH-44j">
+                        <rect key="frame" x="0.0" y="64" width="320" height="455"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <extendedEdge key="edgesForExtendedLayout"/>
+                    <tabBarItem key="tabBarItem" title="Pie Chart" image="pie_chart-32.png" id="EHJ-08-ZvR"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Dh-nV-aNz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="847"/>
+        </scene>
+        <!--Statistics View Controller - Statistics-->
+        <scene sceneID="IRy-W6-7Lw">
+            <objects>
+                <tabBarController restorationIdentifier="fourthController" storyboardIdentifier="fourthController" definesPresentationContext="YES" id="v9d-j3-nxf" customClass="StatisticsViewController" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" title="Statistics" id="mu1-hj-6sO">
+                        <barButtonItem key="leftBarButtonItem" image="menu-26.png" id="Bmv-vx-af5">
+                            <connections>
+                                <action selector="showMenu:" destination="v9d-j3-nxf" id="KcM-Fd-pwy"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" id="dim-N9-4Ux">
+                        <rect key="frame" x="129" y="330" width="163" height="49"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="ddo-Vh-nj4" kind="relationship" relationship="viewControllers" id="OPD-up-0Mu"/>
+                        <segue destination="AYH-dh-vXD" kind="relationship" relationship="viewControllers" id="VpZ-Ou-hC8"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="nAv-yL-49u" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="407" y="1175"/>
+        </scene>
+        <!--View Controller - Scatter Plot-->
+        <scene sceneID="rr9-xf-QIb">
+            <objects>
+                <viewController id="AYH-dh-vXD" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="jdb-NN-JHb">
+                        <rect key="frame" x="0.0" y="0.0" width="320" height="568"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="Scatter Plot" image="scatter_plot-32.png" id="Ewm-GD-CPV"/>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="5Ul-Tu-hrz" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="939" y="1499"/>
         </scene>
         <!--Bookmarks Controller - Bookmarks-->
         <scene sceneID="dyd-g4-4Mf">
@@ -457,6 +515,8 @@
     <resources>
         <image name="menu-26.png" width="26" height="26"/>
         <image name="outline_star-256.png" width="32" height="32"/>
+        <image name="pie_chart-32.png" width="32" height="32"/>
+        <image name="scatter_plot-32.png" width="32" height="32"/>
     </resources>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
@@ -464,7 +524,7 @@
         <simulatedScreenMetrics key="destination" type="retina4"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
+        <segue reference="Waa-gP-0f1"/>
         <segue reference="jUr-3t-vfg"/>
-        <segue reference="TzY-Vj-eU6"/>
     </inferredMetricsTieBreakers>
 </document>

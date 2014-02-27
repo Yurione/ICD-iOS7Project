@@ -60,6 +60,10 @@
             navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"thirdController"]];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 3:
+            navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"fourthController"]];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
     }
 }
 
