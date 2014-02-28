@@ -64,6 +64,10 @@
             navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"fourthController"]];
             [self.sideMenuViewController hideMenuViewController];
             break;
+        case 4:
+            navigationController.viewControllers = @[[self.storyboard instantiateViewControllerWithIdentifier:@"fifthController"]];
+            [self.sideMenuViewController hideMenuViewController];
+            break;
     }
 }
 
