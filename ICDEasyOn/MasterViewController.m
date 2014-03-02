@@ -11,7 +11,6 @@
 #import "DetailViewController.h"
 #import "AdvancedSearchViewController.h"
 #import "CodeICD.h"
-#import "AppDelegate.h"
 #import "SVProgressHUD.h"
 #import "History.h"
 #import "DataCenter.h"
@@ -31,6 +30,8 @@
 
 - (void)viewDidLoad
 {
+    app = [[UIApplication sharedApplication] delegate];
+    
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     if(!fromHistory){
     [defaults setBool:YES forKey:@"titleChecked"];
@@ -102,9 +103,7 @@
     NSMutableArray *arrayCH =[[NSMutableArray alloc] init];
     NSMutableArray *arrayBL =[[NSMutableArray alloc] init];
     NSMutableArray *arrayCA =[[NSMutableArray alloc] init];
-  
-   AppDelegate *app = [[UIApplication sharedApplication] delegate];
-    
+
    
     int numberOfCodes=0;
     
@@ -128,6 +127,8 @@
         
         
     }
+    
+    [[DataCenter sharedInstance] addNumberOfCodes:numberOfCodes];
     
     NSDictionary *dictCH = [NSDictionary dictionaryWithObject:arrayCH forKey:@"data"];
     [_objects addObject:dictCH];
@@ -253,23 +254,25 @@
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
 {
+    [self fetchAddress:_searchBar.text];
+    [self.view endEditing:YES];
+    
     if (fromHistory) {
-        [self fetchAddress:_searchBar.text];
-        [self.view endEditing:YES];
+       
         fromHistory = !fromHistory;
         
     }else{
-        [self fetchAddress:_searchBar.text];
-        [self.view endEditing:YES];
+       
         [self addCodeToHistory:_searchBar.text];
         [[DataCenter sharedInstance] addKeyword:_searchBar.text];
     }
+    
 
 }
 
 
 -(void)addCodeToHistory:(NSString *) keyword{
-    AppDelegate *app = [[UIApplication sharedApplication] delegate];
+
     
     NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
     

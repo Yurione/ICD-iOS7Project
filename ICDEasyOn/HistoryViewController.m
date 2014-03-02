@@ -7,7 +7,6 @@
 //
 
 #import "HistoryViewController.h"
-#import "AppDelegate.h"
 #import "History.h"
 #import "MasterViewController.h"
 
@@ -29,7 +28,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    
+    app = [[UIApplication sharedApplication] delegate];
     _objects = [[NSMutableArray alloc] init];
     
     [self analyzeHistory];
@@ -39,7 +38,6 @@
 
 - (void)analyzeHistory
 {
-     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     
     NSMutableArray *arrayToday =[[NSMutableArray alloc] init];
     NSMutableArray *arrayYesterday =[[NSMutableArray alloc] init];
@@ -204,7 +202,7 @@
 - (IBAction)eraseHistory:(id)sender {
     
     UIAlertView *myAlert = [[UIAlertView alloc] initWithTitle:@"Clear history"
-                                                      message:@"Do you want to continue?"
+                                                      message:@"Do you want to delete all entries from the history?"
                                                      delegate:self
                                             cancelButtonTitle:@"No"
                                             otherButtonTitles: @"Yes", nil];
@@ -214,7 +212,6 @@
 - (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
     
     if (buttonIndex==1) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
 
         app.historyCodes = [[NSMutableArray alloc] init];
         

@@ -9,26 +9,19 @@
 #import "PieChartViewController.h"
 #import "DataCenter.h"
 #import "DataPieChart.h"
-
+#import "CPDConstants.h"
 @interface PieChartViewController ()
 
 @end
 
 @implementation PieChartViewController
+@synthesize hostView = hostView_;
 
 
-/*
-#pragma mark - Rotation
--(BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
-    return (interfaceOrientation == UIInterfaceOrientationLandscapeLeft);
-}
-*/
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // The plot is initialized here, since the view bounds have not transformed for landscape till now
-    DataCenter *d = [DataCenter alloc];
-    d =  [d init];
-    
+
     [self initPlot];
 }
 - (void)didReceiveMemoryWarning
@@ -36,11 +29,17 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+- (void)didRotateFromInterfaceOrientation:(UIInterfaceOrientation)fromInterfaceOrientation{
+    
+    [self initPlot];
 
+}
 #pragma mark - CPTPlotDataSource methods
 -(NSUInteger)numberOfRecordsForPlot:(CPTPlot *)plot {
   
-    return [[[DataCenter sharedInstance] arrayDataPC] count];
+  
+    return [[[DataCenter sharedInstance] topPC] count];
+
    
 }
 
@@ -48,7 +47,7 @@
     if (CPTPieChartFieldSliceWidth == fieldEnum)
     {
        
-       DataPieChart *dPC = [[[DataCenter sharedInstance] arrayDataPC] objectAtIndex:index];
+       DataPieChart *dPC = [[[DataCenter sharedInstance] topPC] objectAtIndex:index];
         return dPC.value;
     }
     return [NSDecimalNumber zero];
@@ -66,12 +65,11 @@
     NSDecimalNumber *sum = [NSDecimalNumber decimalNumberWithDecimal:[[NSNumber numberWithInt:[[DataCenter sharedInstance] countAllTimes]] decimalValue]];
     // 3 - Calculate percentage value
     
-    DataPieChart *dataPC = [[[DataCenter sharedInstance] arrayDataPC] objectAtIndex:index];
+    DataPieChart *dataPC = [[[DataCenter sharedInstance] topPC] objectAtIndex:index];
     NSNumber *value = dataPC.value;
     NSDecimalNumber *valueD = [NSDecimalNumber decimalNumberWithDecimal:[value decimalValue]];
     NSDecimalNumber *percent = [valueD decimalNumberByDividingBy:sum];
     // 4 - Set up display label
-   // NSString *labelValue = [NSString stringWithFormat:@"%@ - %@ (%0.1f %%)", [value stringValue],dataPC.keyword, ([percent floatValue] * 100.0f)];
     
     NSString *labelValue = [NSString stringWithFormat:@"%@ - (%0.1f %%)", [value stringValue],([percent floatValue] * 100.0f)];
     // 5 - Create and return layer with label text
@@ -79,7 +77,7 @@
 }
 
 -(NSString *)legendTitleForPieChart:(CPTPieChart *)pieChart recordIndex:(NSUInteger)index {
-    DataPieChart *dataPC =  [[[DataCenter sharedInstance] arrayDataPC] objectAtIndex:index];
+    DataPieChart *dataPC =  [[[DataCenter sharedInstance] topPC] objectAtIndex:index];
     return dataPC.keyword;
     
 }
@@ -105,7 +103,7 @@
 
 
     // 2 - Create host view
-    self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:parentRect];
+    self.hostView = [(CPTGraphHostingView *) [CPTGraphHostingView alloc] initWithFrame:self.view.bounds];
     self.hostView.allowPinchScaling = NO;
     [self.view addSubview:self.hostView];
     
@@ -117,7 +115,7 @@
     CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
     self.hostView.hostedGraph = graph;
     graph.paddingLeft = 0.0f;
-    graph.paddingTop = 20.0f;
+    graph.paddingTop = 0.0f;
     graph.paddingRight = 0.0f;
     graph.paddingBottom = 0.0f;
     graph.axisSet = nil;
@@ -127,7 +125,7 @@
     textStyle.fontName = @"Helvetica-Bold";
     textStyle.fontSize = 16.0f;
     // 3 - Configure title
-    NSString *title = @"Keywords Searched";
+    NSString *title = @"Four Popular Keywords";
     graph.title = title;
     graph.titleTextStyle = textStyle;
     graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
@@ -177,5 +175,30 @@
     graph.legendDisplacement = CGPointMake(legendPadding, 0.0);
 }
 
+-(void)changeTheme{
+    
+    UIActionSheet *actionSheet = [[UIActionSheet alloc] initWithTitle:@"Apply a Theme" delegate:self cancelButtonTitle:@"Cancel" destructiveButtonTitle:nil otherButtonTitles:CPDThemeNameDarkGradient, CPDThemeNamePlainBlack, CPDThemeNamePlainWhite, CPDThemeNameSlate, CPDThemeNameStocks, nil];
+    [actionSheet showFromTabBar:self.tabBarController.tabBar];
+}
+
+-(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+	// 1 - Get title of tapped button
+	NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+	// 2 - Get theme identifier based on user tap
+	NSString *themeName = kCPTPlainWhiteTheme;
+	if ([title isEqualToString:CPDThemeNameDarkGradient] == YES) {
+		themeName = kCPTDarkGradientTheme;
+	} else if ([title isEqualToString:CPDThemeNamePlainBlack] == YES) {
+		themeName = kCPTPlainBlackTheme;
+	} else if ([title isEqualToString:CPDThemeNamePlainWhite] == YES) {
+		themeName = kCPTPlainWhiteTheme;
+	} else if ([title isEqualToString:CPDThemeNameSlate] == YES) {
+		themeName = kCPTSlateTheme;
+	} else if ([title isEqualToString:CPDThemeNameStocks] == YES) {
+		themeName = kCPTStocksTheme;
+	}
+	// 3 - Apply new theme
+	[self.hostView.hostedGraph applyTheme:[CPTTheme themeNamed:themeName]];
+}
 
 @end

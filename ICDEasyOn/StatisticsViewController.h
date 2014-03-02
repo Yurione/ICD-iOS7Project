@@ -8,9 +8,18 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "PieChartViewController.h"
+#import "ScatterPlotViewController.h"
+@interface StatisticsViewController : UITabBarController<UITabBarControllerDelegate>{
+    UIViewController *viewC;
+   
+}
 
-@interface StatisticsViewController : UITabBarController
+@property (nonatomic,strong) UIViewController *viewC;
+
+
 - (IBAction)showMenu:(id)sender;
+- (IBAction)changeTheme:(id)sender;
 
 
 @end

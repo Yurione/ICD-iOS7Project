@@ -7,7 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
+@interface ScatterPlotViewController : UIViewController<CPTPlotDataSource,UIActionSheetDelegate>
 
-@interface ScatterPlotViewController : UIViewController
+
+@property (nonatomic, strong) CPTGraphHostingView *hostView;
+@property (nonatomic, strong) CPTTheme *selectedTheme;
+
+-(void)initPlot;
+-(void)configureHost;
+-(void)configureGraph;
+-(void)changeTheme;
 
 @end

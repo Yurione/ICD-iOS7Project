@@ -8,9 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "AppDelegate.h"
 @interface MasterViewController : UITableViewController{
-     BOOL fromHistory;
+    BOOL fromHistory;
     NSString *text;
+    AppDelegate *app;
+
 }
 
 @property (strong, nonatomic) IBOutlet UITableView *table;

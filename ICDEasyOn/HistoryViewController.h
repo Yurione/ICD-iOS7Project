@@ -8,8 +8,12 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
+#import "AppDelegate.h"
 
-@interface HistoryViewController : UITableViewController<UIAlertViewDelegate>
+@interface HistoryViewController : UITableViewController<UIAlertViewDelegate>{
+    
+    AppDelegate *app;
+}
 
 @property (strong, nonatomic) NSMutableArray *_objects;
 

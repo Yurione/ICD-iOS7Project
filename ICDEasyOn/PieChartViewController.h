@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
-@interface PieChartViewController : UIViewController<CPTPlotDataSource>
+@interface PieChartViewController : UIViewController<CPTPlotDataSource,UIActionSheetDelegate>
 
 @property (nonatomic, strong) CPTGraphHostingView *hostView;
 @property (nonatomic, strong) CPTTheme *selectedTheme;
@@ -18,5 +18,6 @@
 -(void)configureGraph;
 -(void)configureChart;
 -(void)configureLegend;
+-(void)changeTheme;
 
 @end

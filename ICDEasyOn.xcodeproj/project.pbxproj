@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		83043E0A18A5E28300FA6DA6 /* outline_star-256.png in Resources */ = {isa = PBXBuildFile; fileRef = 83043E0918A5E28300FA6DA6 /* outline_star-256.png */; };
+		830E920118C2D8AA0090827D /* CPDConstants.m in Sources */ = {isa = PBXBuildFile; fileRef = 830E920018C2D8AA0090827D /* CPDConstants.m */; };
 		8321B8A818BC1706007CCB23 /* MessageUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8321B8A718BC1706007CCB23 /* MessageUI.framework */; };
 		8349AD4018BEA0B3009C5BDD /* libCorePlot-CocoaTouch.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 8349AD3F18BEA0B3009C5BDD /* libCorePlot-CocoaTouch.a */; };
 		8380978518C01F2700DF175E /* ScatterPlotViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 8380978418C01F2700DF175E /* ScatterPlotViewController.m */; };
@@ -76,6 +77,8 @@
 
 /* Begin PBXFileReference section */
 		83043E0918A5E28300FA6DA6 /* outline_star-256.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "outline_star-256.png"; sourceTree = "<group>"; };
+		830E91FF18C2D8AA0090827D /* CPDConstants.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPDConstants.h; sourceTree = "<group>"; };
+		830E920018C2D8AA0090827D /* CPDConstants.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = CPDConstants.m; sourceTree = "<group>"; };
 		8321B8A718BC1706007CCB23 /* MessageUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MessageUI.framework; path = System/Library/Frameworks/MessageUI.framework; sourceTree = SDKROOT; };
 		8349ACF118BEA0B3009C5BDD /* CorePlot-CocoaTouch.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "CorePlot-CocoaTouch.h"; sourceTree = "<group>"; };
 		8349ACF218BEA0B3009C5BDD /* CPTAnimation.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CPTAnimation.h; sourceTree = "<group>"; };
@@ -270,6 +273,8 @@
 		8349AC4C18BEA06A009C5BDD /* CorePlot */ = {
 			isa = PBXGroup;
 			children = (
+				830E91FF18C2D8AA0090827D /* CPDConstants.h */,
+				830E920018C2D8AA0090827D /* CPDConstants.m */,
 				8349ACF018BEA0B3009C5BDD /* CorePlotHeaders */,
 				8349AD3F18BEA0B3009C5BDD /* libCorePlot-CocoaTouch.a */,
 			);
@@ -682,6 +687,7 @@
 				83E838DE18A455620086F246 /* Parser.m in Sources */,
 				83DD968918A4F63700C0C1E9 /* RESideMenu.m in Sources */,
 				83DD969D18A4FA5D00C0C1E9 /* RootViewController.m in Sources */,
+				830E920118C2D8AA0090827D /* CPDConstants.m in Sources */,
 				83E838B718A402440086F246 /* DetailViewController.m in Sources */,
 				83DD968A18A4F63700C0C1E9 /* UIViewController+RESideMenu.m in Sources */,
 			);

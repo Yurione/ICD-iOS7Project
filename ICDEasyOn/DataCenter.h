@@ -10,11 +10,18 @@
 
 @interface DataCenter : NSObject{
     NSMutableArray *arrayDataPC;
+    NSMutableArray *topPC;
+    NSMutableArray *arrayResultCodes;
 }
 
 @property (nonatomic,strong) NSMutableArray *arrayDataPC;
+@property (nonatomic,strong) NSMutableArray *arrayResultCodes;
+@property (nonatomic,strong) NSMutableArray *topPC;
 
 + (DataCenter *)sharedInstance;
 -(void)addKeyword:(NSString *) keyword;
+-(void)addNumberOfCodes:(int ) number;
 -(int)countAllTimes;
+-(CGFloat)maxResultCode;
+-(void)getTop4Keyword;
 @end

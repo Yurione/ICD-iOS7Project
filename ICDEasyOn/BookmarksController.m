@@ -8,7 +8,6 @@
 
 #import "BookmarksController.h"
 #import "GDataParser.h"
-#import "AppDelegate.h"
 #import "DetailViewController.h"
 
 @interface BookmarksController ()
@@ -30,10 +29,12 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
+    
+    app = [[UIApplication sharedApplication] delegate];
+    
+
     self.navigationItem.rightBarButtonItem = self.editButtonItem;
     
-     AppDelegate *app = [[UIApplication sharedApplication] delegate];
     menuItems = [[NSMutableArray alloc]initWithArray:app.bookmarkCodes];
  
   
@@ -98,7 +99,7 @@
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
 {
     if (editingStyle == UITableViewCellEditingStyleDelete) {
-        AppDelegate *app = [[UIApplication sharedApplication] delegate];
+       
         [app.bookmarkCodes removeObjectAtIndex:indexPath.row];
         
         NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
@@ -162,7 +163,7 @@
 
 -(void)actionSheet:(UIActionSheet *)actionsheet clickedButtonAtIndex:(NSInteger)buttonIndex{
     
-     AppDelegate *app = [[UIApplication sharedApplication] delegate];
+    
     switch (buttonIndex) {
         case 0:
         {
