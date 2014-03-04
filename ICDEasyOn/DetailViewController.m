@@ -44,14 +44,14 @@
 }
 
 - (IBAction)starClick:(id)sender {
-  
+    NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+
     if (inBookmarks) {
         [star setImage:[UIImage imageNamed:@"outline_star-256.png"]];
         inBookmarks=!inBookmarks;
         
          [app.bookmarkCodes removeObject:codeICD];
         
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
         [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
         [defaults synchronize];
         
@@ -60,18 +60,29 @@
         [alert show];
     }
     else{
+        int bookmarkCodes =[app.bookmarkCodes count];
+        int settingsBookmarks = [[defaults objectForKey:@"codesToStore"] integerValue];
+        if (bookmarkCodes == settingsBookmarks) {
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bookmarks" message:@"You have reached the maximum number of codes storage! Go to Settings to change your limit number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+            
+            [alert show];
+        }
+        else{
+        
+        
         [star setImage:[UIImage imageNamed:@"star-32.png"]];
         inBookmarks=!inBookmarks;
         
         [app.bookmarkCodes addObject:codeICD];
         
-        NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
+       
         [defaults setObject:[NSKeyedArchiver archivedDataWithRootObject:app.bookmarkCodes] forKey:@"bookmarkCodes"];
         [defaults synchronize];
         
          UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bookmarks" message:@"Code added to bookmarks with success!" delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
         
         [alert show];
+        }
     }
     
     
