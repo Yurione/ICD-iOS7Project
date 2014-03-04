@@ -174,7 +174,20 @@
 
 -(void)validateCodesToStore:(UIAlertView *)alertView{
     int numberOfCodesToStore =[[alertView textFieldAtIndex:0].text integerValue];
-     if (numberOfCodesToStore > INT16_MAX){
+    if (numberOfCodesToStore==0) {
+        
+        UIAlertView *messageAlert = [[UIAlertView alloc]
+                                     initWithTitle:@"Invalid number"
+                                     message:[NSString stringWithFormat:@"Number must be higher than %i",numberOfCodesToStore]
+                                     delegate:nil
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:@"Ok",nil];
+        
+        [messageAlert show];
+    }
+    
+    
+     else if (numberOfCodesToStore > INT16_MAX){
         UIAlertView *messageAlert = [[UIAlertView alloc]
                                      initWithTitle:@"Invalid number"
                                      message:[NSString stringWithFormat:@"Maximum number admitted is the %i",INT16_MAX]
@@ -192,6 +205,7 @@
         
     }
     else{
+       
         UIAlertView *messageAlert = [[UIAlertView alloc]
                                      initWithTitle:@"Invalid number"
                                      message:[NSString stringWithFormat:@"Number must be higher than %i",[app.bookmarkCodes count]]
