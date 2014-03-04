@@ -13,6 +13,6 @@ typedef void(^RequestCompletionHandler) (NSString*, NSError*);
 @interface iOSRequest : NSObject
    
 +(void)requestToPath:(NSString*)search onCompletion:(RequestCompletionHandler)complete;
-
++(void)requestPathValidate:(NSString*)search onCompletion:(RequestCompletionHandler)complete;
 
 @end

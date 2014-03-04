@@ -17,7 +17,9 @@ NSString *  const CPDThemeNameSlate         = @"Slate";
 NSString *  const CPDThemeNameStocks        = @"Stocks";
 
 NSString *  const CPDTickerSymbolAAPL       = @"AAPL";
-NSString *  const CPDTickerSymbolGOOG       = @"GOOG";
-NSString *  const CPDTickerSymbolMSFT       = @"MSFT";
+
+//Factory Settings
+NSString *  const ENDPOINT_ADDRESS       = @"http://icdalmost.apphb.com/ServiceICDEasyOn.svc";
+NSString *  const CODES_TO_STORE       = @"100";
 
 @end

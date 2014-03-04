@@ -8,8 +8,10 @@
 
 #import <UIKit/UIKit.h>
 #import "CorePlot-CocoaTouch.h"
-@interface PieChartViewController : UIViewController<CPTPlotDataSource,UIActionSheetDelegate>
-
+@interface PieChartViewController : UIViewController<CPTPlotDataSource,UIActionSheetDelegate>{
+     NSUserDefaults *defaults;
+}
+@property (nonatomic,strong)NSUserDefaults *defaults;
 @property (nonatomic, strong) CPTGraphHostingView *hostView;
 @property (nonatomic, strong) CPTTheme *selectedTheme;
 

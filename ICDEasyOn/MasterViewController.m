@@ -129,6 +129,7 @@
     }
     
     [[DataCenter sharedInstance] addNumberOfCodes:numberOfCodes];
+    [[DataCenter sharedInstance] addChapters:arrayCH];
     
     NSDictionary *dictCH = [NSDictionary dictionaryWithObject:arrayCH forKey:@"data"];
     [_objects addObject:dictCH];

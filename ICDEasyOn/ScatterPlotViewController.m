@@ -15,12 +15,12 @@
 
 @implementation ScatterPlotViewController
 @synthesize hostView = hostView_;
-
+@synthesize defaults;
 
 #pragma mark - UIViewController lifecycle methods
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
-    self.selectedTheme = [CPTTheme themeNamed:kCPTDarkGradientTheme];
+     defaults = [NSUserDefaults standardUserDefaults];
     [self initPlot];
     
 }
@@ -52,7 +52,7 @@
     
     // 1 - Create the graph
     CPTGraph *graph = [[CPTXYGraph alloc] initWithFrame:self.hostView.bounds];
-    [graph applyTheme:self.selectedTheme];
+    [graph applyTheme:[CPTTheme themeNamed:[defaults objectForKey:@"ScatterTheme"]]];
     self.hostView.hostedGraph = graph;
     // 2 - Set graph title
     NSString *title = @"Codes returned in the last 10 searches";
@@ -241,7 +241,9 @@
 		themeName = kCPTStocksTheme;
 	}
 	// 3 - Apply new theme
-	self.selectedTheme = [CPTTheme themeNamed:themeName];
+    [defaults setObject:themeName forKey:@"ScatterTheme"];
+    [defaults synchronize];
+	
     [self initPlot];
 }
 

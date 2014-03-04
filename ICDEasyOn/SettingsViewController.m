@@ -7,12 +7,18 @@
 //
 
 #import "SettingsViewController.h"
-
+#import "iOSRequest.h"
+#import "SVProgressHUD.h"
+#import <limits.h>
+#import "CPDConstants.h"
 @interface SettingsViewController ()
+@property (nonatomic,assign) bool testAddress;
+@property (nonatomic,assign) bool codesToStore;
 
 @end
 
 @implementation SettingsViewController
+@synthesize defaults,testAddress,codesToStore;
 
 - (id)initWithStyle:(UITableViewStyle)style
 {
@@ -26,12 +32,8 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-
-    // Uncomment the following line to preserve selection between presentations.
-    // self.clearsSelectionOnViewWillAppear = NO;
- 
-    // Uncomment the following line to display an Edit button in the navigation bar for this view controller.
-    // self.navigationItem.rightBarButtonItem = self.editButtonItem;
+    defaults = [NSUserDefaults standardUserDefaults];
+    app = [[UIApplication sharedApplication] delegate];
 }
 
 - (void)didReceiveMemoryWarning
@@ -46,76 +48,195 @@
 {
 
     // Return the number of sections.
-    return 0;
+    return 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
 
     // Return the number of rows in the section.
-    return 0;
+    return 3;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     static NSString *CellIdentifier = @"Cell";
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier forIndexPath:indexPath];
     
-    // Configure the cell...
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:CellIdentifier];
+    if (cell == nil) {
+        cell = [[UITableViewCell alloc] initWithStyle:UITableViewCellStyleSubtitle reuseIdentifier:CellIdentifier];
+    }
+   
+    
+    
+    switch (indexPath.row) {
+        case 0:
+            
+            cell.textLabel.text =@"Endpoint Address";
+            cell.detailTextLabel.text = [defaults objectForKey:@"endpointAddress"];
+            break;
+        case 1:
+            
+            cell.textLabel.text =@"Number of Codes to Store";
+            cell.detailTextLabel.text =[defaults objectForKey:@"codesToStore"];
+            break;
+        case 2:
+            
+            cell.textLabel.text =@"Restore Factory Settings";
+       
+            break;
+            
+        default:
+            break;
+    }
     
     return cell;
 }
 
-/*
-// Override to support conditional editing of the table view.
-- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    return YES;
-}
-*/
+    
+    
+    if (indexPath.row==0) {
+        
+        
+        testAddress=YES;
+        
+        UIAlertView *messageAlert = [[UIAlertView alloc]
+                                     initWithTitle:@"Change Endpoint Address" message:nil delegate:self cancelButtonTitle:@"Cancel" otherButtonTitles:@"Ok",nil];
+        messageAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField *txtField = [messageAlert textFieldAtIndex:0];
+        txtField.text = [defaults objectForKey:@"endpointAddress"];
+        [messageAlert show];
+    }
+    
+   else if (indexPath.row==1) {
+       
+       codesToStore=YES;
+       
+        UIAlertView *messageAlert = [[UIAlertView alloc]
+                                     initWithTitle:@"Number of Codes to Store"
+                                     message:nil
+                                     delegate:self
+                                     cancelButtonTitle:@"Cancel"
+                                     otherButtonTitles:@"Ok",nil];
+       
+        messageAlert.alertViewStyle = UIAlertViewStylePlainTextInput;
+        UITextField *txtField = [messageAlert textFieldAtIndex:0];
+        txtField.keyboardType = UIKeyboardTypeNumberPad;
+        [messageAlert show];
+    }
 
-/*
-// Override to support editing the table view.
-- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    if (editingStyle == UITableViewCellEditingStyleDelete) {
-        // Delete the row from the data source
-        [tableView deleteRowsAtIndexPaths:@[indexPath] withRowAnimation:UITableViewRowAnimationFade];
-    }   
-    else if (editingStyle == UITableViewCellEditingStyleInsert) {
-        // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-    }   
-}
-*/
-
-/*
-// Override to support rearranging the table view.
-- (void)tableView:(UITableView *)tableView moveRowAtIndexPath:(NSIndexPath *)fromIndexPath toIndexPath:(NSIndexPath *)toIndexPath
-{
-}
-*/
-
-/*
-// Override to support conditional rearranging of the table view.
-- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // Return NO if you do not want the item to be re-orderable.
-    return YES;
-}
-*/
-
-/*
-#pragma mark - Navigation
-
-// In a story board-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
+   else if (indexPath.row==2) {
+       
+       [self setFactorySettings];
+   }
+    
+   
 }
 
- */
+-(void)validateUserAddress:(UIAlertView *)alertView{
+    
+    [SVProgressHUD showWithStatus:@"Validating address..."];
+    
+    [iOSRequest requestPathValidate:[alertView textFieldAtIndex:0].text
+                       onCompletion:^(NSString *result, NSError *error)
+     {
+         dispatch_async(dispatch_get_main_queue(), ^{
+             if([result isEqualToString:@"200"]){
+                 [SVProgressHUD dismiss];
+                 
+                 [defaults setObject:[alertView textFieldAtIndex:0].text forKey:@"endpointAddress"];
+                 [defaults synchronize];
+                 [self.tableView reloadData];
+                 
+             }else{
+                 
+                 [SVProgressHUD dismiss];
+                 
+                 UIAlertView *messageAlert = [[UIAlertView alloc]
+                                              initWithTitle:@"The Address is Not Valid"
+                                              message:[NSString stringWithFormat:@"HTTP %@ Error",result]
+                                              delegate:nil
+                                              cancelButtonTitle:nil
+                                              otherButtonTitles:@"Ok",nil];
+                 
+                 [messageAlert show];
+                 
+             }
+         });
+         
+         
+     }];
+
+    
+}
+
+-(void)validateCodesToStore:(UIAlertView *)alertView{
+    int numberOfCodesToStore =[[alertView textFieldAtIndex:0].text integerValue];
+     if (numberOfCodesToStore > INT16_MAX){
+        UIAlertView *messageAlert = [[UIAlertView alloc]
+                                     initWithTitle:@"Invalid number"
+                                     message:[NSString stringWithFormat:@"Maximum number admitted is the %i",INT16_MAX]
+                                     delegate:nil
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:@"Ok",nil];
+        
+        [messageAlert show];
+    }
+    else if ([app.bookmarkCodes count] <= numberOfCodesToStore) {
+        
+        [defaults setObject:[alertView textFieldAtIndex:0].text forKey:@"codesToStore"];
+        [defaults synchronize];
+        [self.tableView reloadData];
+        
+    }
+    else{
+        UIAlertView *messageAlert = [[UIAlertView alloc]
+                                     initWithTitle:@"Invalid number"
+                                     message:[NSString stringWithFormat:@"Number must be higher than %i",[app.bookmarkCodes count]]
+                                     delegate:nil
+                                     cancelButtonTitle:nil
+                                     otherButtonTitles:@"Ok",nil];
+        
+        [messageAlert show];
+    }
+    
+}
+-(void)setFactorySettings{
+    
+    [defaults setObject:ENDPOINT_ADDRESS forKey:@"endpointAddress"];
+    [defaults setObject:CODES_TO_STORE forKey:@"codesToStore"];
+    [defaults synchronize];
+    
+    [self.tableView reloadData];
+    UIAlertView *messageAlert = [[UIAlertView alloc]
+                                 initWithTitle:@"Factory Settings"
+                                 message:@"Default application settings applied with success!"
+                                 delegate:nil
+                                 cancelButtonTitle:nil
+                                 otherButtonTitles:@"Ok",nil];
+    
+    [messageAlert show];
+    
+}
+- (void)alertView:(UIAlertView *)alertView clickedButtonAtIndex:(NSInteger)buttonIndex{
+    if(alertView.cancelButtonIndex == buttonIndex){
+        // Do cancel
+        
+        //[string intvalue]
+    }
+    else if(testAddress){
+        [self validateUserAddress:alertView];
+        testAddress=NO;
+    }
+    else if(codesToStore){
+        
+        [self validateCodesToStore:alertView];
+        codesToStore = NO;
+    }
+    
+}
 
 - (IBAction)showMenu:(id)sender {
     

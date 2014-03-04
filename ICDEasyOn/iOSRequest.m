@@ -26,12 +26,12 @@
     
 
    
-    
+    /*
     [defaults setObject:@"http://icdalmost.apphb.com/ServiceICDEasyOn.svc/Rest/getcodes" forKey:@"addressURL"];
     [defaults synchronize];
-    
-    NSString *basePath = [defaults stringForKey:@"addressURL"];
-    NSString *fullPath = [basePath stringByAppendingFormat:@"?search=%@&title=%@&definition=%@&inclusion=%@&exclusion=%@&note=%@&codingHint=%@",search,titleS,definitionS,inclusionS,exclusionS,noteS,codingS];
+    */
+    NSString *basePath = [defaults stringForKey:@"endpointAddress"];
+    NSString *fullPath = [basePath stringByAppendingFormat:@"/Rest/getcodes?search=%@&title=%@&definition=%@&inclusion=%@&exclusion=%@&note=%@&codingHint=%@",search,titleS,definitionS,inclusionS,exclusionS,noteS,codingS];
 
     NSLog(@"%@",fullPath);
     
@@ -46,7 +46,7 @@
                            completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
                                
                                NSXMLParser *xmlParser = [[NSXMLParser alloc] initWithData:data];
-        
+                            
                                
                                Parser *theParser = [[Parser alloc] initParser];
                                
@@ -68,5 +68,33 @@
     
     
 }
++(void)requestPathValidate:(NSString*)search onCompletion:(RequestCompletionHandler)complete{
+    
+    NSString *fullPath = [search stringByAppendingFormat:@"/Rest/areyouicdeasyon"];
+    
+    NSLog(@"%@",fullPath);
+    
+    NSOperationQueue *backgroundQueue = [[NSOperationQueue alloc] init];
+    
+    NSURLRequest *request = [[NSURLRequest alloc] initWithURL:[NSURL URLWithString:fullPath]
+                                                  cachePolicy:NSURLCacheStorageAllowedInMemoryOnly
+                                              timeoutInterval:20];
+    
+    [NSURLConnection sendAsynchronousRequest:request
+                                       queue:backgroundQueue
+                           completionHandler:^(NSURLResponse *response, NSData *data, NSError *error){
+                               
+                              
+                               
+                               NSHTTPURLResponse *HTTPResponse = (NSHTTPURLResponse *)response;
+                               NSNumber *statusCode = [[NSNumber alloc] initWithInt:[HTTPResponse statusCode]];
+                               
+                               
+                               NSString *result = [[NSString alloc] initWithString:[statusCode stringValue]];
+                               
+                               if(complete) complete(result,error);
+                               
+                           }];
 
+}
 @end

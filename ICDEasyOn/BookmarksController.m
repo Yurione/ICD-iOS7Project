@@ -213,11 +213,11 @@
     
     
     // Email Subject
-    NSString *emailTitle = @"Test Email";
+    NSString *emailTitle = @"Export bookmarks";
     // Email Content
-    NSString *messageBody = @"<h1>Learning iOS Programming!</h1>"; // Change the message body to HTML
+    NSString *messageBody = @""; // Change the message body to HTML
     // To address
-    NSArray *toRecipents = [NSArray arrayWithObject:@"support@appcoda.com"];
+    NSArray *toRecipents = [NSArray arrayWithObject:@"icdeasyon@gmail.com"];
     
    
     

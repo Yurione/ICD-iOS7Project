@@ -16,12 +16,12 @@
 
 @implementation PieChartViewController
 @synthesize hostView = hostView_;
-
+@synthesize defaults;
 
 -(void)viewDidAppear:(BOOL)animated {
     [super viewDidAppear:animated];
     // The plot is initialized here, since the view bounds have not transformed for landscape till now
-
+    defaults = [NSUserDefaults standardUserDefaults];
     [self initPlot];
 }
 - (void)didReceiveMemoryWarning
@@ -131,7 +131,7 @@
     graph.titlePlotAreaFrameAnchor = CPTRectAnchorTop;
     graph.titleDisplacement = CGPointMake(0.0f, -12.0f);
     // 4 - Set theme
-    self.selectedTheme = [CPTTheme themeNamed:kCPTPlainWhiteTheme];
+    self.selectedTheme = [CPTTheme themeNamed:[defaults objectForKey:@"PieTheme"]];
     [graph applyTheme:self.selectedTheme];
 }
 
@@ -198,6 +198,9 @@
 		themeName = kCPTStocksTheme;
 	}
 	// 3 - Apply new theme
+    
+    [defaults setObject:themeName forKey:@"PieTheme"];
+    [defaults synchronize];
 	[self.hostView.hostedGraph applyTheme:[CPTTheme themeNamed:themeName]];
 }
 

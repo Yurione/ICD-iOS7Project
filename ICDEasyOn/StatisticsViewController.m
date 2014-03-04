@@ -74,6 +74,9 @@
    else if ([viewC isKindOfClass:[ScatterPlotViewController class]]) {
         [(ScatterPlotViewController *) viewC changeTheme];
     }
+   else if ([viewC isKindOfClass:[BarGraphViewController class]]) {
+       [(BarGraphViewController *) viewC changeTheme];
+   }
     
     
 }

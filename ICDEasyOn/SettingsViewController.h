@@ -8,7 +8,14 @@
 
 #import <UIKit/UIKit.h>
 #import "RESideMenu.h"
-@interface SettingsViewController : UITableViewController
+#import "AppDelegate.h"
+@interface SettingsViewController : UITableViewController<UIAlertViewDelegate>{
+    
+    NSUserDefaults *defaults;
+    AppDelegate *app;
+}
+@property (nonatomic,strong)NSUserDefaults *defaults;
+
 - (IBAction)showMenu:(id)sender;
 
 @end

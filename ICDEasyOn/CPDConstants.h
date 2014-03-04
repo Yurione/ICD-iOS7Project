@@ -15,7 +15,8 @@ extern NSString * const CPDThemeNameSlate;
 extern NSString * const CPDThemeNameStocks;
 
 extern NSString * const CPDTickerSymbolAAPL;
-extern NSString * const CPDTickerSymbolGOOG;
-extern NSString * const CPDTickerSymbolMSFT;
 
+//Factory Settings
+extern NSString * const ENDPOINT_ADDRESS;
+extern NSString * const CODES_TO_STORE;
 @end

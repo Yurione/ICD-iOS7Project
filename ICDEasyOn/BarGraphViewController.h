@@ -7,7 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "CorePlot-CocoaTouch.h"
+@interface BarGraphViewController : UIViewController<CPTBarPlotDataSource, CPTBarPlotDelegate,UIActionSheetDelegate>{
+    
+     NSUserDefaults *defaults;
+}
+@property (nonatomic,strong)NSUserDefaults *defaults;
+@property (nonatomic, strong) CPTTheme *selectedTheme;
 
-@interface BarGraphViewController : UIViewController
+-(void)changeTheme;
 
 @end
