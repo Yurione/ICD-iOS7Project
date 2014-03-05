@@ -63,7 +63,7 @@
         int bookmarkCodes =[app.bookmarkCodes count];
         int settingsBookmarks = [[defaults objectForKey:@"codesToStore"] integerValue];
         if (bookmarkCodes == settingsBookmarks) {
-            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bookmarks" message:@"You have reached the maximum number of codes storage! Go to Settings to change your limit number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+            UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Bookmarks" message:@"You have reached the maximum number of saved codes! Go to Settings for changing the maximum number." delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
             
             [alert show];
         }

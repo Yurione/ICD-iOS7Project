@@ -232,6 +232,12 @@ CGFloat const CPDBarInitialX = 0.25f;
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
+    
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //Do nothing
+    }
+    else
+    {
 	// 1 - Get title of tapped button
 	NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
 	// 2 - Get theme identifier based on user tap
@@ -250,6 +256,8 @@ CGFloat const CPDBarInitialX = 0.25f;
     [defaults synchronize];
   
     [self initPlot];
+        
+    }
 }
 
 

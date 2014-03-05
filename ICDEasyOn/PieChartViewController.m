@@ -182,7 +182,13 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	// 1 - Get title of tapped button
+    
+    if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //Do nothing
+    }
+    else{
+        
+    // 1 - Get title of tapped button
 	NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
 	// 2 - Get theme identifier based on user tap
 	NSString *themeName = kCPTPlainWhiteTheme;
@@ -202,6 +208,7 @@
     [defaults setObject:themeName forKey:@"PieTheme"];
     [defaults synchronize];
 	[self.hostView.hostedGraph applyTheme:[CPTTheme themeNamed:themeName]];
+    }
 }
 
 @end

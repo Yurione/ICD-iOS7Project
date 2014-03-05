@@ -22,9 +22,9 @@
     NSData *data =[defaults objectForKey:@"bookmarkCodes"];
     NSArray *array =[NSKeyedUnarchiver unarchiveObjectWithData:data];
     bookmarkCodes=[[NSMutableArray alloc] initWithArray:array];
-    NSData *data2 =[defaults objectForKey:@"historyCodes"];
-    NSArray *array2 =[NSKeyedUnarchiver unarchiveObjectWithData:data2];
-    historyCodes = [[NSMutableArray alloc] initWithArray:array2];
+    data=[defaults objectForKey:@"historyCodes"];
+    array =[NSKeyedUnarchiver unarchiveObjectWithData:data];
+    historyCodes = [[NSMutableArray alloc] initWithArray:array];
    
    
     return YES;

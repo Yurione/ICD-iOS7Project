@@ -32,6 +32,7 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
+     [self.navigationController setToolbarHidden:YES];
     self.delegate = self;
     viewC = [[self viewControllers] objectAtIndex:0];
 }

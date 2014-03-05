@@ -230,21 +230,29 @@
 }
 
 -(void)actionSheet:(UIActionSheet *)actionSheet clickedButtonAtIndex:(NSInteger)buttonIndex {
-	// 1 - Get title of tapped button
-	NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
-	// 2 - Get theme identifier based on user tap
-	NSString *themeName = kCPTPlainWhiteTheme;
-	if ([title isEqualToString:CPDThemeNameDarkGradient] == YES) {
-		themeName = kCPTDarkGradientTheme;
-	}
-    else if ([title isEqualToString:CPDThemeNameStocks] == YES) {
-		themeName = kCPTStocksTheme;
-	}
-	// 3 - Apply new theme
-    [defaults setObject:themeName forKey:@"ScatterTheme"];
-    [defaults synchronize];
+	if (buttonIndex == actionSheet.cancelButtonIndex) {
+        //Do nothing
+    }
+    else
+    {
+    
+        // 1 - Get title of tapped button
+        NSString *title = [actionSheet buttonTitleAtIndex:buttonIndex];
+        // 2 - Get theme identifier based on user tap
+        NSString *themeName = kCPTPlainWhiteTheme;
+        if ([title isEqualToString:CPDThemeNameDarkGradient] == YES) {
+            themeName = kCPTDarkGradientTheme;
+        }
+        else if ([title isEqualToString:CPDThemeNameStocks] == YES) {
+            themeName = kCPTStocksTheme;
+        }
+        // 3 - Apply new theme
+        [defaults setObject:themeName forKey:@"ScatterTheme"];
+        [defaults synchronize];
 	
-    [self initPlot];
+        [self initPlot];
+        
+    }
 }
 
 @end

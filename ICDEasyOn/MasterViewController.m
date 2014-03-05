@@ -145,7 +145,7 @@
     
     [SVProgressHUD dismiss];
     
-    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Returned Information" message:[NSString stringWithFormat:@"%i%@", numberOfCodes,timeLabel] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
+    UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"Information" message:[NSString stringWithFormat:@"%i%@", numberOfCodes,timeLabel] delegate:nil cancelButtonTitle:@"OK" otherButtonTitles:nil , nil];
     
     [alert show];
     
@@ -251,6 +251,7 @@
 }
 - (void)searchBarCancelButtonClicked:(UISearchBar *)searchBar{
     [self.view endEditing:YES];
+    searchBar.text = @"";
 }
 
 - (void)searchBarSearchButtonClicked:(UISearchBar *)searchBar
