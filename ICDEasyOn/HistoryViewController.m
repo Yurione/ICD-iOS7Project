@@ -101,16 +101,27 @@
         }
     }
     
-    NSDictionary *dictT = [NSDictionary dictionaryWithObject:arrayToday forKey:@"data"];
+    NSSortDescriptor *dateDescriptor = [NSSortDescriptor
+                                        sortDescriptorWithKey:@"date"
+                                        ascending:NO];
+    NSArray *sortDescriptors = [NSArray arrayWithObject:dateDescriptor];
+    NSArray *sortedEventArray = [arrayToday
+                                 sortedArrayUsingDescriptors:sortDescriptors];
+    
+    
+    NSDictionary *dictT = [NSDictionary dictionaryWithObject:sortedEventArray forKey:@"data"];
     [_objects addObject:dictT];
-    
-    NSDictionary *dictY = [NSDictionary dictionaryWithObject:arrayYesterday forKey:@"data"];
+    sortedEventArray = [arrayYesterday
+                         sortedArrayUsingDescriptors:sortDescriptors];
+    NSDictionary *dictY = [NSDictionary dictionaryWithObject:sortedEventArray forKey:@"data"];
     [_objects addObject:dictY];
-    
-    NSDictionary *dictL = [NSDictionary dictionaryWithObject:arrayLastWeek forKey:@"data"];
+    sortedEventArray = [arrayLastWeek
+                         sortedArrayUsingDescriptors:sortDescriptors];
+    NSDictionary *dictL = [NSDictionary dictionaryWithObject:sortedEventArray forKey:@"data"];
     [_objects addObject:dictL];
-    
-    NSDictionary *dictO = [NSDictionary dictionaryWithObject:arrayOlders forKey:@"data"];
+    sortedEventArray = [arrayOlders
+                         sortedArrayUsingDescriptors:sortDescriptors];
+    NSDictionary *dictO = [NSDictionary dictionaryWithObject:sortedEventArray forKey:@"data"];
     [_objects addObject:dictO];
     
   
