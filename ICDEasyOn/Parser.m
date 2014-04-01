@@ -13,11 +13,10 @@
 
 -(id) initParser {
     self = [super init];
-   // if (self == [super init]) {
     if(self){
         app = (AppDelegate *)[[UIApplication sharedApplication]delegate];
     }
-  //  }
+
     
     return self;
 }
