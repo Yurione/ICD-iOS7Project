@@ -106,7 +106,7 @@
     }
     
     NSArray *titles = @[@"Search", @"Bookmarks", @"History", @"Statistics", @"Settings"];
-    NSArray *images = @[@"search-32", @"outline_star-256", @"fold", @"statistics-256", @"IconSettings"];
+    NSArray *images = @[@"search-32", @"outline_star-256", @"fold", @"statistics-256", @"SettingsIcon"];
     cell.textLabel.text = titles[indexPath.row];
     cell.imageView.image = [UIImage imageNamed:images[indexPath.row]];
     
